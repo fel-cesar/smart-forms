@@ -8,7 +8,6 @@ import 'package:smart_forms/models/form_model.dart';
 import 'package:smart_forms/presentation/pages/form_page/form_list_page.dart';
 import 'package:smart_forms/presentation/pages/new_form_page/new_form_page.dart';
 
-
 class OpeningPage extends StatelessWidget {
   OpeningPage({super.key});
 
@@ -45,7 +44,9 @@ class OpeningPage extends StatelessWidget {
                       Button.small(
                         text: 'test add form',
                         onPressed: () => formsController.addForm(
-                          FormModel(id: DateTime.now().toString(), title: "New Form ${DateTime.now()}"),
+                          FormModel(
+                              id: DateTime.now().toString(),
+                              title: "New Form ${DateTime.now()}"),
                         ),
                       )
                     ],
@@ -61,7 +62,7 @@ class OpeningPage extends StatelessWidget {
                   color: Colors.white,
                 ),
                 child: Button.jumbo(
-                  onPressed: () => Get.bottomSheet( NewFormPage()),
+                  onPressed: () => Get.bottomSheet(NewFormPage()),
                   text: Constants.createNewForm,
                 ),
               ),

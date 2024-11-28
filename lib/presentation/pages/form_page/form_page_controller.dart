@@ -9,7 +9,8 @@ class FormPageController extends GetxController {
   final fields = <FormField>[].obs;
 
   final String title;
-  late FormModel form; // TODO: maybe not necessary according o SOLID
+  late FormModel
+      form; // TODO: maybe not necessary according o SOLID, remove later
 
   FormPageController({required this.title}) {
     form = FormModel(

@@ -10,9 +10,8 @@ import 'package:smart_forms/controllers/form_list_controller.dart';
 class FormPage extends StatelessWidget {
   FormPage({super.key});
 
-  // final form = FormModel(id: DateTime.now().toString(), title: '[FORM TITLE]');
   final formController =
-      FormPageController(title: (Get.arguments as RxString).value);
+      Get.put(FormPageController(title: (Get.arguments as RxString).value));
 
   @override
   Widget build(context) {
@@ -25,7 +24,7 @@ class FormPage extends StatelessWidget {
               backgroundColor: Constants.gray800,
               padding: const EdgeInsets.all(18),
             ),
-            onPressed: () => Get.bottomSheet(const AddFieldPage()),
+            onPressed: () => Get.bottomSheet(AddFieldPage()),
             icon: const Icon(
               Icons.add,
               size: 18,
@@ -86,14 +85,37 @@ class FormPage extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(14),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      DashedInputListItem(
-                        onTap: () => Get.bottomSheet(const AddFieldPage()),
+                  child: Obx(() {
+                    return ReorderableListView.builder(
+                      footer: DashedInputListItem(
+                        onTap: () => Get.bottomSheet(AddFieldPage()),
                       ),
-                    ],
-                  ),
+                      onReorder: (oldIndex, newIndex) {
+                        formController.reorder(oldIndex, newIndex);
+                      },
+                      itemCount: formController.fields.length,
+                      itemBuilder: (context, index) {
+                        final formField = formController.fields[index];
+                        // Proper list tile here
+                        return ListTile(
+                          key: ValueKey(formField.id),
+
+                          title: Text(formField.label),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.delete),
+                            onPressed: () =>
+                                formController.removeField(formField.id),
+                          ),
+
+                          // TODO: put DS icon here
+                          leading: ReorderableDragStartListener(
+                            index: index,
+                            child: const Icon(Icons.drag_handle),
+                          ),
+                        );
+                      },
+                    );
+                  }),
                 ),
               ),
             ),

@@ -52,7 +52,7 @@ class FieldTypeSelector<T> extends StatelessWidget {
                     title: const Text('Text'),
                     onTap: () {
                       // print('Text');
-                      onSelect?.call('Text' as T);
+                      onSelect?.call('text' as T);
                       Get.back();
                     },
                   ),
@@ -65,7 +65,7 @@ class FieldTypeSelector<T> extends StatelessWidget {
                     title: const Text('Dropdown'),
                     onTap: () {
                       // print('Dropdown');
-                      onSelect?.call('Dropdown' as T);
+                      onSelect?.call('dropdown' as T);
                       Get.back();
                     },
                   ),
@@ -78,7 +78,7 @@ class FieldTypeSelector<T> extends StatelessWidget {
                     title: const Text('Checkbox'),
                     onTap: () {
                       // print('Checkbox');
-                      onSelect?.call('Checkbox' as T);
+                      onSelect?.call('checkbox' as T);
                       Get.back();
                     },
                   ),

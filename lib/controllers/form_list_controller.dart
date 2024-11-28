@@ -20,7 +20,5 @@ class FormListController extends GetxController {
     final FormModel form = forms.removeAt(originIndex);
 
     forms.insert(destinationIndex, form);
-
-    //TODO: We could persist on backend
   }
 }

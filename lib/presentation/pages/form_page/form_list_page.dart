@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:smart_forms/constants.dart';
 import 'package:smart_forms/controllers/form_list_controller.dart';
+import 'package:smart_forms/models/form_model.dart';
 
-import '../../../constants.dart';
-import '../../../models/form_model.dart';
+
 
 class FormListPage extends StatelessWidget {
   FormListPage({super.key});
@@ -51,7 +52,9 @@ class FormListPage extends StatelessWidget {
             onPressed: () {
               // Add a new form
               formsController.addForm(
-                FormModel(id: DateTime.now().toString(), title: "New Form ${DateTime.now()}"),
+                FormModel(
+                    id: DateTime.now().toString(),
+                    title: "New Form ${DateTime.now()}"),
               );
             },
             child: const Text("Add New Form"), // this will be removed

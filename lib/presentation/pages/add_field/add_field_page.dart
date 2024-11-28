@@ -3,10 +3,15 @@ import 'package:get/get.dart';
 import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
 
+import '../form_page/form_page_controller.dart';
+import 'add_field_page_controller.dart';
 import 'field_type_selector.dart';
 
 class AddFieldPage extends StatelessWidget {
-  const AddFieldPage({super.key});
+  AddFieldPage({super.key});
+
+  final formController = Get.find<FormPageController>();
+  final addFieldPageController = AddFieldPageController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +47,9 @@ class AddFieldPage extends StatelessWidget {
                   ),
                   const Spacer(),
                   GestureDetector(
-                    onTap: Get.back,
+                    onTap: () {
+                      Get.back();
+                    },
                     child: const Text(
                       Constants.cancel,
                       style: TextStyle(
@@ -52,7 +59,11 @@ class AddFieldPage extends StatelessWidget {
                   ),
                   const SizedBox(width: 20),
                   Button.small(
-                    onPressed: null,
+                    onPressed: () {
+                      formController.fields.add(addFieldPageController
+                          .formField); // TODO: remove hardcoded values
+                      Get.back();
+                    },
                     text: Constants.done,
                   )
                 ],
@@ -64,7 +75,8 @@ class AddFieldPage extends StatelessWidget {
             ),
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 24),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 48, vertical: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -90,10 +102,10 @@ class AddFieldPage extends StatelessWidget {
                     const SizedBox(height: 20),
                     const Text('Field Name'),
                     const SizedBox(height: 4),
-                    const TextField(
-                      style: TextStyle(fontSize: 12.25),
+                    TextField(
+                      style: const TextStyle(fontSize: 12.25),
                       cursorColor: Constants.gray500,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: Constants.formTitle,
                         hintStyle: TextStyle(
                           color: Constants.gray500,
@@ -104,30 +116,40 @@ class AddFieldPage extends StatelessWidget {
                         enabledBorder: formBorderStyle,
                         focusedBorder: formBorderStyle,
                       ),
+                      onChanged: (value) =>
+                          addFieldPageController.name.value = value,
                     ),
                     const SizedBox(height: 20),
                     const Text('Field Type'),
                     const SizedBox(height: 4),
-                    TextField(
-                      readOnly: true,
-                      onTap: () => Get.bottomSheet(
-                        const FieldTypeSelector(
-                          onSelect: print,
+                    Obx(
+                      () => TextField(
+                        // TODO: get text from type
+                        controller: TextEditingController(
+                            text: addFieldPageController.type.value),
+                        readOnly: true,
+                        onTap: () async {
+                          await Get.bottomSheet(FieldTypeSelector<String>(
+                            onSelect: (value) =>
+                                addFieldPageController.type.value = value,
+                            //TODO: this will be field type here.
+                          ));
+                        },
+
+                        style: const TextStyle(fontSize: 12.25),
+                        cursorColor: Constants.gray500,
+                        decoration: const InputDecoration(
+                          suffixIcon: Icon(Icons.arrow_drop_down_rounded),
+                          hintText: Constants.formTitle,
+                          hintStyle: TextStyle(
+                            color: Constants.gray500,
+                            fontSize: 12.25,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          border: formBorderStyle,
+                          enabledBorder: formBorderStyle,
+                          focusedBorder: formBorderStyle,
                         ),
-                      ),
-                      style: const TextStyle(fontSize: 12.25),
-                      cursorColor: Constants.gray500,
-                      decoration: const InputDecoration(
-                        suffixIcon: Icon(Icons.arrow_drop_down_rounded),
-                        hintText: Constants.formTitle,
-                        hintStyle: TextStyle(
-                          color: Constants.gray500,
-                          fontSize: 12.25,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        border: formBorderStyle,
-                        enabledBorder: formBorderStyle,
-                        focusedBorder: formBorderStyle,
                       ),
                     ),
                   ],
