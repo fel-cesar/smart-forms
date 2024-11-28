@@ -10,15 +10,16 @@ import 'package:smart_forms/presentation/pages/new_form_page/new_form_page.dart'
 class OpeningPage extends StatelessWidget {
   OpeningPage({super.key});
 
-  final FormListPageController formsController = Get.put(FormListPageController());
+  final FormListPageController formsController =
+      Get.put(FormListPageController());
 
   @override
   Widget build(BuildContext context) {
     return Obx(
       () {
-        // if (formsController.forms.isNotEmpty) {
-        //   return FormListPage();
-        // }
+        if (formsController.forms.isNotEmpty) {
+          // return FormListPage();
+        }
 
         return Scaffold(
           body: Column(
@@ -33,12 +34,6 @@ class OpeningPage extends StatelessWidget {
                       SvgPicture.asset(Constants.projectMarkLogoSvg),
                       const SizedBox(height: 20),
                       const TextXL5.bold(Constants.smartForms),
-                      Button.small(
-                        text: 'test add form',
-                        onPressed: () => formsController.addForm(
-                          FormModel(id: DateTime.now().toString(), title: "New Form ${DateTime.now()}"),
-                        ),
-                      )
                     ],
                   ),
                 ),
