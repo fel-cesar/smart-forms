@@ -101,20 +101,25 @@ class FormPage extends StatelessWidget {
                       itemCount: formController.fields.length,
                       itemBuilder: (context, index) {
                         final formField = formController.fields[index];
-                        // Proper list tile here
-                        return ListTile(
+                        return Padding(
                           key: ValueKey(formField.id),
-
-                          title: TextBase(formField.label),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.delete),
-                            onPressed: () => formController.removeField(formField.id),
-                          ),
-
-                          // TODO: put DS icon here
-                          leading: ReorderableDragStartListener(
-                            index: index,
-                            child: const Icon(Icons.drag_handle),
+                          padding: const EdgeInsets.only(bottom: 14),
+                          child: DraggableInput(
+                            leading: ReorderableDragStartListener(
+                              index: index,
+                              child: const Icon(
+                                Icons.drag_indicator_sharp,
+                                color: Constants.gray600,
+                              ),
+                            ),
+                            trailing: IconButton(
+                              icon: const Icon(
+                                Icons.more_horiz,
+                                color: Constants.gray800,
+                              ),
+                              onPressed: () => formController.removeField(formField.id),
+                            ),
+                            child: TextBase(formField.label),
                           ),
                         );
                       },
@@ -125,6 +130,48 @@ class FormPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class DraggableInput extends StatelessWidget {
+  const DraggableInput({
+    super.key,
+    required this.child,
+    this.leading,
+    this.trailing,
+  });
+
+  final Widget? leading;
+  final Widget? trailing;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(100),
+        border: Border.all(
+          color: Constants.gray300,
+          width: 1,
+        ),
+        color: Constants.gray100,
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        children: [
+          if (leading case final leading?) ...[
+            leading,
+            const SizedBox(width: 20),
+          ],
+          child,
+          const Spacer(),
+          if (trailing case final trailing?) ...[
+            const SizedBox(width: 20),
+            trailing,
+          ],
+        ],
       ),
     );
   }

@@ -39,7 +39,6 @@ abstract class Constants {
   static const iconColumnChart = 'assets/icons/column_chart.svg';
   static const iconConstruction = 'assets/icons/construction.svg';
   static const iconContacts = 'assets/icons/contacts.svg';
-  static const iconDrag = 'assets/icons/drag.svg';
   static const iconDropdown = 'assets/icons/dropdown.svg';
   static const iconEdit = 'assets/icons/edit.svg';
   static const iconEmail = 'assets/icons/email.svg';

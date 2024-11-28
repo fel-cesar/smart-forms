@@ -18,7 +18,6 @@ const icons = [
   Constants.iconContacts,
   Constants.iconCalendar,
   Constants.iconSettings,
-  // Constants.iconOwnerUser,
   Constants.iconPieChart,
   Constants.iconLineChart,
   Constants.iconRename,
@@ -93,8 +92,7 @@ class AddFieldPage extends StatelessWidget {
                   const SizedBox(width: 20),
                   Button.small(
                     onPressed: () {
-                      formController.fields
-                          .add(addFieldPageController.formField);
+                      formController.fields.add(addFieldPageController.formField);
                       Get.back();
                     },
                     text: Constants.done,
@@ -108,8 +106,7 @@ class AddFieldPage extends StatelessWidget {
             ),
             Expanded(
               child: SingleChildScrollView(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 46, vertical: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 46, vertical: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -129,11 +126,8 @@ class AddFieldPage extends StatelessWidget {
                             (assetPath) => ObxValue(
                               (data) => SelectableIcon(
                                 assetPath: assetPath,
-                                isSelected:
-                                    addFieldPageController.iconName.value ==
-                                        assetPath,
-                                onPressed: () => addFieldPageController
-                                    .iconName.value = assetPath,
+                                isSelected: addFieldPageController.iconName.value == assetPath,
+                                onPressed: () => addFieldPageController.iconName.value = assetPath,
                               ),
                               false.obs,
                             ),
@@ -159,8 +153,7 @@ class AddFieldPage extends StatelessWidget {
                         enabledBorder: formBorderStyle,
                         focusedBorder: formBorderStyle,
                       ),
-                      onChanged: (value) =>
-                          addFieldPageController.name.value = value,
+                      onChanged: (value) => addFieldPageController.name.value = value,
                     ),
                     const SizedBox(height: 20),
                     TextXS.bold(Constants.fieldType.toUpperCase()),
@@ -168,8 +161,7 @@ class AddFieldPage extends StatelessWidget {
 
                     Obx(
                       () => TextField(
-                        controller: TextEditingController(
-                            text: addFieldPageController.type.value),
+                        controller: TextEditingController(text: addFieldPageController.type.value),
                         readOnly: true,
                         onTap: () async {
                           await Get.bottomSheet(Column(
@@ -194,8 +186,7 @@ class AddFieldPage extends StatelessWidget {
                           suffixIcon: SizedBox(
                             width: 8,
                             child: Center(
-                              child:
-                                  SvgPicture.asset(Constants.iconChevronDown),
+                              child: SvgPicture.asset(Constants.iconChevronDown),
                             ),
                           ),
                           hintText: Constants.formTitle,
@@ -231,21 +222,17 @@ class AddFieldPage extends StatelessWidget {
                                   //   FocusScope.of(context).unfocus();
                                   // },
                                   onReorder: (oldIndex, newIndex) {
-                                    addFieldPageController.reorder(
-                                        oldIndex, newIndex);
+                                    addFieldPageController.reorder(oldIndex, newIndex);
                                   },
                                   physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
-                                  itemCount:
-                                      addFieldPageController.options.length,
+                                  itemCount: addFieldPageController.options.length,
                                   buildDefaultDragHandles: true,
                                   itemBuilder: (context, index) {
                                     return ListTile(
-                                      key: Key(addFieldPageController
-                                          .optionsKeys[index]),
+                                      key: Key(addFieldPageController.optionsKeys[index]),
                                       title: TextField(onChanged: (value) {
-                                        addFieldPageController.options[index] =
-                                            value;
+                                        addFieldPageController.options[index] = value;
                                       }),
                                       leading: ReorderableDragStartListener(
                                         index: index,
@@ -264,8 +251,7 @@ class AddFieldPage extends StatelessWidget {
                                     text: 'add field',
                                     onPressed: () {
                                       addFieldPageController.options.add('');
-                                      addFieldPageController.optionsKeys
-                                          .add(DateTime.now().toString());
+                                      addFieldPageController.optionsKeys.add(DateTime.now().toString());
                                     }),
                               ],
                             )
@@ -281,21 +267,17 @@ class AddFieldPage extends StatelessWidget {
                                   //   FocusScope.of(context).unfocus();
                                   // },
                                   onReorder: (oldIndex, newIndex) {
-                                    addFieldPageController.reorder(
-                                        oldIndex, newIndex);
+                                    addFieldPageController.reorder(oldIndex, newIndex);
                                   },
                                   physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
-                                  itemCount:
-                                      addFieldPageController.options.length,
+                                  itemCount: addFieldPageController.options.length,
                                   buildDefaultDragHandles: true,
                                   itemBuilder: (context, index) {
                                     return ListTile(
-                                      key: Key(addFieldPageController
-                                          .optionsKeys[index]),
+                                      key: Key(addFieldPageController.optionsKeys[index]),
                                       title: TextField(onChanged: (value) {
-                                        addFieldPageController.options[index] =
-                                            value;
+                                        addFieldPageController.options[index] = value;
                                       }),
                                       leading: ReorderableDragStartListener(
                                         index: index,
@@ -314,8 +296,7 @@ class AddFieldPage extends StatelessWidget {
                                     text: 'add field',
                                     onPressed: () {
                                       addFieldPageController.options.add('');
-                                      addFieldPageController.optionsKeys
-                                          .add(DateTime.now().toString());
+                                      addFieldPageController.optionsKeys.add(DateTime.now().toString());
                                     }),
                               ],
                             )
