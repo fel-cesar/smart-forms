@@ -8,5 +8,6 @@ class FormModel {
   FormModel({
     required this.id,
     required this.title,
+    this.fields = const [],
   });
 }

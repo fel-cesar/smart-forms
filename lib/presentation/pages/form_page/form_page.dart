@@ -3,9 +3,15 @@ import 'package:get/get.dart';
 import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
 import 'package:smart_forms/presentation/pages/add_field/add_field_page.dart';
+import 'package:smart_forms/controllers/form_page_controller.dart';
+import 'package:smart_forms/controllers/form_list_controller.dart';
 
 class FormPage extends StatelessWidget {
-  const FormPage({super.key});
+  FormPage({super.key});
+
+  // final form = FormModel(id: DateTime.now().toString(), title: '[FORM TITLE]');
+  final formController =
+      FormPageController(title: (Get.arguments as RxString).value);
 
   @override
   Widget build(context) {
@@ -36,17 +42,33 @@ class FormPage extends StatelessWidget {
               size: 18,
             ),
           ),
+          const SizedBox(width: 21),
+          IconButton.filled(
+            style: IconButton.styleFrom(
+              backgroundColor: Constants.gray800,
+              padding: const EdgeInsets.all(18),
+            ),
+            onPressed: () {
+              final formListController = Get.find<FormListController>();
+              formListController.addForm(formController.form);
+              Get.back();
+            },
+            icon: const Icon(
+              Icons.check,
+              size: 18,
+            ),
+          ),
         ],
       ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(14),
+            Padding(
+              padding: const EdgeInsets.all(14),
               child: Text(
-                '[FORM TITLE]',
-                style: TextStyle(
+                formController.form.title,
+                style: const TextStyle(
                   fontSize: 26.25,
                   fontWeight: FontWeight.bold,
                   color: Constants.gray800,

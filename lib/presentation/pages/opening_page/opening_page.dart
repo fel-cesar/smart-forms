@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:smart_forms/controllers/form_list_controller.dart';
 import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
-import 'package:smart_forms/controllers/forms_list_controller.dart';
 import 'package:smart_forms/models/form_model.dart';
 import 'package:smart_forms/presentation/pages/form_page/form_list_page.dart';
 import 'package:smart_forms/presentation/pages/new_form_page/new_form_page.dart';
 
+
+
 class OpeningPage extends StatelessWidget {
   OpeningPage({super.key});
 
-  final FormsListController formsController = Get.put(FormsListController());
+  final FormListController formsController = Get.put(FormListController());
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +62,7 @@ class OpeningPage extends StatelessWidget {
                   color: Colors.white,
                 ),
                 child: Button.jumbo(
-                  onPressed: () => Get.bottomSheet(const NewFormPage()),
+                  onPressed: () => Get.bottomSheet( NewFormPage()),
                   text: Constants.createNewForm,
                 ),
               ),

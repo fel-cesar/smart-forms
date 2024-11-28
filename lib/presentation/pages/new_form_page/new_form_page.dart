@@ -5,7 +5,10 @@ import 'package:smart_forms/constants.dart';
 import 'package:smart_forms/presentation/pages/form_page/form_page.dart';
 
 class NewFormPage extends StatelessWidget {
-  const NewFormPage({super.key});
+  NewFormPage({super.key});
+
+  // We dont need controller for a single field
+  final title = RxString('');
 
   @override
   Widget build(context) {
@@ -46,10 +49,10 @@ class NewFormPage extends StatelessWidget {
             ),
             const Spacer(),
             Container(),
-            const TextField(
-              style: TextStyle(fontSize: 12.25),
+            TextField(
+              style: const TextStyle(fontSize: 12.25),
               cursorColor: Constants.gray500,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: Constants.formTitle,
                 hintStyle: TextStyle(
                   color: Constants.gray500,
@@ -60,14 +63,20 @@ class NewFormPage extends StatelessWidget {
                 enabledBorder: formBorderStyle,
                 focusedBorder: formBorderStyle,
               ),
+              onChanged: (value) {
+                title.value = value;
+              },
             ),
             const SizedBox(height: 42),
             Button.jumbo(
               onPressed: () {
+                // dismiss bottom sheet
                 if (Get.isBottomSheetOpen == true) {
                   Get.back();
                 }
-                Get.to(() => const FormPage());
+
+                // then navigate
+                Get.to(() => FormPage(), arguments: title);
               },
               text: Constants.create,
             ),

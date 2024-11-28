@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 import '../models/form_model.dart';
 
-class FormsListController extends GetxController {
+class FormListController extends GetxController {
+  // FormListModel would be simply a list of forms, lets simplify for now.
   var forms = <FormModel>[].obs;
 
   void addForm(FormModel form) {
