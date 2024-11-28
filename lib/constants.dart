@@ -37,6 +37,7 @@ abstract class Constants {
   static const gray800 = Color(0xFF2D3748);
 
   // Icons
+  static const iconCheckbox = 'assets/icons/checkbox.svg';
   static const iconCalendar = 'assets/icons/calendar.svg';
   static const iconChat = 'assets/icons/chat.svg';
   static const iconCheck = 'assets/icons/check.svg';

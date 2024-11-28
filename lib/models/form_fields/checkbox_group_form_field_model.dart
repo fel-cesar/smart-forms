@@ -1,16 +1,17 @@
-// models/dropdown_form_field.dart
+import 'package:smart_forms/constants.dart';
+
 import '../form_field.dart';
-// TODO: WIP
+
 class MarkCheckboxGroupFormFieldModel extends MarkFormField {
   final List<String> options;
-  // String selectedValue;
+  @override
+  String get defaultIconPath => Constants.iconCheckbox;
 
   MarkCheckboxGroupFormFieldModel({
     required super.id,
     required super.label,
     required this.options,
-    // required this.selectedValue,
+    super.iconPath,
     required super.type,
   });
 }
-

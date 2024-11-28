@@ -10,6 +10,9 @@ import 'add_field_page_controller.dart';
 import 'field_type_selector.dart';
 
 const icons = [
+  Constants.iconDropdown,
+  Constants.iconRename,
+  Constants.checkbox,
   Constants.iconOwnerUser,
   Constants.iconHome,
   Constants.iconPin,
@@ -17,11 +20,9 @@ const icons = [
   Constants.iconCalendar,
   Constants.iconTasks,
   Constants.iconContacts,
-  Constants.iconCalendar,
   Constants.iconSettings,
   Constants.iconPieChart,
   Constants.iconLineChart,
-  Constants.iconRename,
   Constants.iconTextDescription,
   Constants.iconEmail,
   Constants.iconProposalDesignPlus,
@@ -123,10 +124,10 @@ class AddFieldPage extends StatelessWidget {
                               (data) => SelectableIcon(
                                 assetPath: assetPath,
                                 isSelected:
-                                    addFieldPageController.iconName.value ==
+                                    addFieldPageController.iconPath.value ==
                                         assetPath,
                                 onPressed: () => addFieldPageController
-                                    .iconName.value = assetPath,
+                                    .iconPath.value = assetPath,
                               ),
                               false.obs,
                             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:smart_forms/constants.dart';
 import 'package:smart_forms/models/form_field.dart';
 import 'package:smart_forms/models/form_fields/checkbox_group_form_field_model.dart';
 import 'package:smart_forms/models/form_fields/dropdown_form_field_model.dart';
@@ -8,7 +9,7 @@ import 'package:smart_forms/models/form_fields/form_text_field_model.dart';
 class AddFieldPageController extends GetxController {
   final type = 'text'.obs;
   final name = ''.obs;
-  final iconName = ''.obs;
+  final iconPath = ''.obs;
 
   // TODO: For dropdown + checkbox options (TODO: apply SOLID)
   final options = <String>[].obs;
@@ -29,8 +30,10 @@ class AddFieldPageController extends GetxController {
     if (currentFormField != null) {
       type.value = currentFormField.type;
       name.value = currentFormField.label;
+      iconPath.value = currentFormField.iconPath;
 
       textFieldController.text = currentFormField.label;
+
       // TODO: Apply SOLID for specific initers
       if (currentFormField is MarkDropdownFormFieldModel) {
         options.value = (currentFormField).options;
@@ -62,6 +65,9 @@ class AddFieldPageController extends GetxController {
       }
       refresh();
     }
+
+
+    // iconPath.value = defaultIconPath;
   }
 
   MarkFormField get formField {
@@ -72,6 +78,7 @@ class AddFieldPageController extends GetxController {
           label: name.value,
           type: type.value,
           multiline: textFieldType.value == 'multiline',
+          iconPath: iconPath.value.isNotEmpty ? iconPath.value : Constants.iconRename,
         );
       case 'dropdown':
         return MarkDropdownFormFieldModel(
@@ -79,7 +86,7 @@ class AddFieldPageController extends GetxController {
           label: name.value,
           type: type.value,
           options: options,
-          // selectedValue: options[0]
+          iconPath: iconPath.value.isNotEmpty ? iconPath.value : Constants.iconDropdown,
         );
       case 'checkbox':
         return MarkCheckboxGroupFormFieldModel(
@@ -87,6 +94,7 @@ class AddFieldPageController extends GetxController {
           label: name.value,
           type: type.value,
           options: options,
+          iconPath: iconPath.value.isNotEmpty ? iconPath.value : Constants.iconCheckbox,
         );
       default:
         // Default to text, this code should not be reached

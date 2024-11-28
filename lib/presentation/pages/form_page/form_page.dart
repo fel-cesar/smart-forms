@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:smart_forms/models/form_field.dart';
 import 'package:smart_forms/presentation/components/components.dart';
@@ -9,13 +10,12 @@ import 'package:smart_forms/presentation/pages/form_page/form_page_controller.da
 import 'package:smart_forms/presentation/pages/form_preview_page/form_preview_page.dart';
 
 class FormPage extends StatelessWidget {
-   FormPage({super.key});
+  FormPage({super.key});
 
-    final formController =
-        Get.put(FormPageController(title: (Get.arguments as RxString).value));
+  final formController =
+      Get.put(FormPageController(title: (Get.arguments as RxString).value));
   @override
   Widget build(context) {
-
     return Scaffold(
       floatingActionButton: Row(
         mainAxisSize: MainAxisSize.min,
@@ -150,7 +150,7 @@ class FormPage extends StatelessWidget {
                             );
 
                             print(newFormField.toString());
-                            print(newFormField?.label);
+                            print(newFormField?.iconPath);
 
                             if (newFormField != null) {
                               formController.fields.removeAt(index);
@@ -164,12 +164,32 @@ class FormPage extends StatelessWidget {
                             key: ValueKey(formField.id),
                             padding: const EdgeInsets.only(bottom: 14),
                             child: DraggableInput(
-                              leading: ReorderableDragStartListener(
-                                index: index,
-                                child: const Icon(
-                                  Icons.drag_indicator_sharp,
-                                  color: Constants.gray600,
-                                ),
+                              leading: Row(
+                                children: [
+                                  ReorderableDragStartListener(
+                                    index: index,
+                                    child: const Icon(
+                                      Icons.drag_indicator_sharp,
+                                      color: Constants.gray600,
+                                    ),
+                                  ),
+
+                                  // MarkIcon
+                                  SizedBox(
+                                    width: 28,
+                                    height: 28,
+                                    child: GestureDetector(
+                                      // onTap: onPressed,
+                                      child: Center(
+                                        child: SvgPicture.asset(
+                                          formField.iconPath,
+                                          height: 16,
+                                          width: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                               trailing: IconButton(
                                 icon: const Icon(
