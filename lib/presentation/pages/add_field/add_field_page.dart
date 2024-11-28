@@ -219,9 +219,9 @@ class AddFieldPage extends StatelessWidget {
                           ? Column(
                               children: [
                                 ReorderableListView.builder(
-                                  onReorderStart: (_) {
-                                    FocusScope.of(context).unfocus();
-                                  },
+                                  // onReorderStart: (_) {
+                                  //   FocusScope.of(context).unfocus();
+                                  // },
                                   onReorder: (oldIndex, newIndex) {
                                     addFieldPageController.reorder(
                                         oldIndex, newIndex);
@@ -241,7 +241,12 @@ class AddFieldPage extends StatelessWidget {
                                       }),
                                       leading: ReorderableDragStartListener(
                                         index: index,
-                                        child: const Icon(Icons.drag_handle),
+                                        child: GestureDetector(
+                                          child: const Icon(Icons.drag_handle),
+                                          onTapDown: (details) {
+                                            FocusScope.of(context).unfocus();
+                                          },
+                                        ),
                                       ),
                                     );
                                   },
@@ -264,9 +269,9 @@ class AddFieldPage extends StatelessWidget {
                           ? Column(
                               children: [
                                 ReorderableListView.builder(
-                                  onReorderStart: (_) {
-                                    FocusScope.of(context).unfocus();
-                                  },
+                                  // onReorderStart: (_) {
+                                  //   FocusScope.of(context).unfocus();
+                                  // },
                                   onReorder: (oldIndex, newIndex) {
                                     addFieldPageController.reorder(
                                         oldIndex, newIndex);
@@ -286,7 +291,12 @@ class AddFieldPage extends StatelessWidget {
                                       }),
                                       leading: ReorderableDragStartListener(
                                         index: index,
-                                        child: const Icon(Icons.drag_handle),
+                                        child: GestureDetector(
+                                          child: const Icon(Icons.drag_handle),
+                                          onTapDown: (details) {
+                                            FocusScope.of(context).unfocus();
+                                          },
+                                        ),
                                       ),
                                     );
                                   },
