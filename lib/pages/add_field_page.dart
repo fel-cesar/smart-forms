@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smart_forms/constants.dart';
+import 'package:smart_forms/pages/field_type_selector.dart';
 
 import '../components/components.dart';
 
@@ -106,10 +107,17 @@ class AddFieldPage extends StatelessWidget {
                     const SizedBox(height: 20),
                     const Text('Field Type'),
                     const SizedBox(height: 4),
-                    const TextField(
-                      style: TextStyle(fontSize: 12.25),
+                    TextField(
+                      readOnly: true,
+                      onTap: () => Get.bottomSheet(
+                        const FieldTypeSelector(
+                          onSelect: print,
+                        ),
+                      ),
+                      style: const TextStyle(fontSize: 12.25),
                       cursorColor: Constants.gray500,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
+                        suffixIcon: Icon(Icons.arrow_drop_down_rounded),
                         hintText: Constants.formTitle,
                         hintStyle: TextStyle(
                           color: Constants.gray500,

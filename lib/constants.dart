@@ -7,6 +7,7 @@ abstract class Constants {
   static const create = 'Create';
   static const createNewForm = 'Create New Form';
   static const done = 'Done';
+  static const fieldType = 'Field Type';
   static const formTitle = 'Form Title';
   static const newForm = 'New Form';
   static const smartForms = 'Smart Forms';
