@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'constants.dart';
+import 'package:smart_forms/constants.dart';
 
 class Button extends StatelessWidget {
   Button.small({super.key, required this.onPressed, this.text})

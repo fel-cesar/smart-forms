@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'buttons.dart';
-import 'constants.dart';
+import 'package:smart_forms/components/components.dart';
+import 'package:smart_forms/constants.dart';
+import 'package:smart_forms/pages/form_page.dart';
 
 class NewFormPage extends StatelessWidget {
   const NewFormPage({super.key});
@@ -63,7 +63,12 @@ class NewFormPage extends StatelessWidget {
             ),
             const SizedBox(height: 42),
             Button.jumbo(
-              onPressed: () {},
+              onPressed: () {
+                if (Get.isBottomSheetOpen == true) {
+                  Get.back();
+                }
+                Get.to(const FormPage());
+              },
               text: Constants.create,
             ),
           ],
