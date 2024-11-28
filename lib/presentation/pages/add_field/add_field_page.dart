@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
-import 'package:smart_forms/presentation/components/text.dart';
 
 import '../form_page/form_page_controller.dart';
 import 'add_field_page_controller.dart';
@@ -169,7 +168,6 @@ class AddFieldPage extends StatelessWidget {
 
                     Obx(
                       () => TextField(
-                        // TODO: get text from type
                         controller: TextEditingController(
                             text: addFieldPageController.type.value),
                         readOnly: true,
@@ -181,6 +179,7 @@ class AddFieldPage extends StatelessWidget {
                                 child: FieldTypeSelector<String>(
                             onSelect: (value) {
                               addFieldPageController.options.clear();
+                              addFieldPageController.optionsKeys.clear();
                               addFieldPageController.type.value = value;
                             },
                                 ),
@@ -217,76 +216,90 @@ class AddFieldPage extends StatelessWidget {
 
                     Obx(() {
                       return addFieldPageController.type.value == 'dropdown'
-                          ? ReorderableListView.builder(
-                              onReorder: (oldIndex, newIndex) {
-                                // TODO: proper reordering
-                              },
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount:
-                                  addFieldPageController.options.length + 1,
-                              buildDefaultDragHandles: true,
-                              itemBuilder: (context, index) {
-                                if (index <
-                                    addFieldPageController.options.length) {
-                                  return ListTile(
-                                    key: Key(index.toString()),
-                                    title: TextField(onChanged: (value) {
-                                      addFieldPageController.options[index] =
-                                          value;
-                                    }),
-                                    leading: ReorderableDragStartListener(
-                                      index: index,
-                                      child: const Icon(Icons.drag_handle),
-                                    ),
-                                  );
-                                }
-                                return Button.small(
-                                  key: Key(index.toString()),
-                                  text: 'add field',
-                                  onPressed: () {
-                                    addFieldPageController.options.add('');
+                          ? Column(
+                              children: [
+                                ReorderableListView.builder(
+                                  onReorderStart: (_) {
+                                    FocusScope.of(context).unfocus();
                                   },
-                                );
-                              },
+                                  onReorder: (oldIndex, newIndex) {
+                                    addFieldPageController.reorder(
+                                        oldIndex, newIndex);
+                                  },
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount:
+                                      addFieldPageController.options.length,
+                                  buildDefaultDragHandles: true,
+                                  itemBuilder: (context, index) {
+                                    return ListTile(
+                                      key: Key(addFieldPageController
+                                          .optionsKeys[index]),
+                                      title: TextField(onChanged: (value) {
+                                        addFieldPageController.options[index] =
+                                            value;
+                                      }),
+                                      leading: ReorderableDragStartListener(
+                                        index: index,
+                                        child: const Icon(Icons.drag_handle),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                Button.small(
+                                    key: const Key('button-add-field}'),
+                                    text: 'add field',
+                                    onPressed: () {
+                                      addFieldPageController.options.add('');
+                                      addFieldPageController.optionsKeys
+                                          .add(DateTime.now().toString());
+                                    }),
+                              ],
                             )
                           : const SizedBox.shrink();
                     }),
 
                     Obx(() {
                       return addFieldPageController.type.value == 'checkbox'
-                          ? ReorderableListView.builder(
-                              onReorder: (oldIndex, newIndex) {
-                                // TODO: proper reordering
-                              },
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount:
-                                  addFieldPageController.options.length + 1,
-                              buildDefaultDragHandles: true,
-                              itemBuilder: (context, index) {
-                                if (index <
-                                    addFieldPageController.options.length) {
-                                  return ListTile(
-                                    key: Key(index.toString()),
-                                    title: TextField(onChanged: (value) {
-                                      addFieldPageController.options[index] =
-                                          value;
-                                    }),
-                                    leading: ReorderableDragStartListener(
-                                      index: index,
-                                      child: const Icon(Icons.drag_handle),
-                                    ),
-                                  );
-                                }
-                                return Button.small(
-                                  key: Key(index.toString()),
-                                  text: 'add field',
-                                  onPressed: () {
-                                    addFieldPageController.options.add('');
+                          ? Column(
+                              children: [
+                                ReorderableListView.builder(
+                                  onReorderStart: (_) {
+                                    FocusScope.of(context).unfocus();
                                   },
-                                );
-                              },
+                                  onReorder: (oldIndex, newIndex) {
+                                    addFieldPageController.reorder(
+                                        oldIndex, newIndex);
+                                  },
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount:
+                                      addFieldPageController.options.length,
+                                  buildDefaultDragHandles: true,
+                                  itemBuilder: (context, index) {
+                                    return ListTile(
+                                      key: Key(addFieldPageController
+                                          .optionsKeys[index]),
+                                      title: TextField(onChanged: (value) {
+                                        addFieldPageController.options[index] =
+                                            value;
+                                      }),
+                                      leading: ReorderableDragStartListener(
+                                        index: index,
+                                        child: const Icon(Icons.drag_handle),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                Button.small(
+                                    key: const Key('button-add-field}'),
+                                    text: 'add field',
+                                    onPressed: () {
+                                      addFieldPageController.options.add('');
+                                      addFieldPageController.optionsKeys
+                                          .add(DateTime.now().toString());
+                                    }),
+                              ],
                             )
                           : const SizedBox.shrink();
                     }),

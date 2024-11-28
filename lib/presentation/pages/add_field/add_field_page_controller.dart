@@ -11,6 +11,7 @@ class AddFieldPageController extends GetxController {
 
   // TODO: For dropdown + checkbox options (TODO: apply SOLID)
   final options = <String>[].obs;
+  final optionsKeys = <String>[].obs;
 
 
   MarkFormField get formField {
@@ -40,5 +41,18 @@ class AddFieldPageController extends GetxController {
         return FormTextFieldModel(
             id: DateTime.now().toString(), label: name.value, type: type.value);
     }
+  }
+
+  void reorder(int originIndex, int destinationIndex) {
+    if (originIndex < destinationIndex) {
+      destinationIndex -= 1;
+    }
+    final String option = options.removeAt(originIndex);
+
+    options.insert(destinationIndex, option);
+
+    final String optionKey = optionsKeys.removeAt(originIndex);
+
+    optionsKeys.insert(destinationIndex, optionKey);
   }
 }
