@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
@@ -117,7 +118,7 @@ class AddFieldPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      'Icon'.toUpperCase(),
+                      Constants.icon.toUpperCase(),
                       style: const TextStyle(
                         fontSize: 10.5,
                         fontWeight: FontWeight.bold,
@@ -148,7 +149,13 @@ class AddFieldPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    const Text('Field Name'),
+                    Text(
+                      Constants.fieldName.toUpperCase(),
+                      style: const TextStyle(
+                        fontSize: 10.5,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     const SizedBox(height: 4),
                     // TODO: extract this text field to components.
                     TextField(
@@ -168,7 +175,13 @@ class AddFieldPage extends StatelessWidget {
                       onChanged: (value) => addFieldPageController.name.value = value,
                     ),
                     const SizedBox(height: 20),
-                    const Text('Field Type'),
+                    Text(
+                      Constants.fieldType.toUpperCase(),
+                      style: const TextStyle(
+                        fontSize: 10.5,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     const SizedBox(height: 4),
 
                     Obx(
@@ -185,10 +198,15 @@ class AddFieldPage extends StatelessWidget {
 
                         style: const TextStyle(fontSize: 12.25),
                         cursorColor: Constants.gray500,
-                        decoration: const InputDecoration(
-                          suffixIcon: Icon(Icons.arrow_drop_down_rounded),
+                        decoration: InputDecoration(
+                          suffixIcon: SizedBox(
+                            width: 8,
+                            child: Center(
+                              child: SvgPicture.asset(Constants.iconChevronDown),
+                            ),
+                          ),
                           hintText: Constants.formTitle,
-                          hintStyle: TextStyle(
+                          hintStyle: const TextStyle(
                             color: Constants.gray500,
                             fontSize: 12.25,
                             fontWeight: FontWeight.w400,

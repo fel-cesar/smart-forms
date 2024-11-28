@@ -4,13 +4,18 @@ abstract class Constants {
   // Text
   static const addField = 'Add Field';
   static const cancel = 'Cancel';
+  static const checkbox = 'Checkbox';
   static const create = 'Create';
   static const createNewForm = 'Create New Form';
   static const done = 'Done';
+  static const dropdown = 'Dropdown';
+  static const fieldName = 'Field Name';
   static const fieldType = 'Field Type';
   static const formTitle = 'Form Title';
+  static const icon = 'Icon';
   static const newForm = 'New Form';
   static const smartForms = 'Smart Forms';
+  static const text = 'Text';
   static const formsList = 'Forms List';
 
   // Colors
