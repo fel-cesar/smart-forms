@@ -7,6 +7,44 @@ import '../form_page/form_page_controller.dart';
 import 'add_field_page_controller.dart';
 import 'field_type_selector.dart';
 
+const icons = [
+  Constants.iconOwnerUser,
+  Constants.iconHome,
+  Constants.iconPin,
+  Constants.iconMoney,
+  Constants.iconCalendar,
+  Constants.iconTasks,
+  Constants.iconContacts,
+  Constants.iconCalendar,
+  Constants.iconSettings,
+  Constants.iconOwnerUser,
+  Constants.iconPieChart,
+  Constants.iconLineChart,
+  Constants.iconRename,
+  Constants.iconTextDescription,
+  Constants.iconEmail,
+  Constants.iconProposalDesignPlus,
+  Constants.iconResume,
+  Constants.iconStar,
+  Constants.iconLikeWon,
+  Constants.iconLikeLost,
+  Constants.iconConstruction,
+  Constants.iconPhone,
+  Constants.iconWebsiteInternetGlobe,
+  Constants.iconInfo,
+  Constants.iconSustainabilityEco,
+  Constants.iconChat,
+  Constants.iconMicrosite,
+  Constants.iconEdit,
+  Constants.iconColumnChart,
+  Constants.iconWarning,
+  Constants.iconFormula,
+  Constants.iconNumber,
+  Constants.iconDropdown,
+  Constants.iconMoney,
+  Constants.iconTags,
+];
+
 class AddFieldPage extends StatelessWidget {
   AddFieldPage({super.key});
 
@@ -60,8 +98,7 @@ class AddFieldPage extends StatelessWidget {
                   const SizedBox(width: 20),
                   Button.small(
                     onPressed: () {
-                      formController.fields.add(addFieldPageController
-                          .formField); // TODO: remove hardcoded values
+                      formController.fields.add(addFieldPageController.formField); // TODO: remove hardcoded values
                       Get.back();
                     },
                     text: Constants.done,
@@ -75,25 +112,36 @@ class AddFieldPage extends StatelessWidget {
             ),
             Expanded(
               child: SingleChildScrollView(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 48, vertical: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 46, vertical: 24),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Text('Icon'),
+                    Text(
+                      'Icon'.toUpperCase(),
+                      style: const TextStyle(
+                        fontSize: 10.5,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     const SizedBox(height: 4),
                     Container(
-                      color: Constants.gray200,
                       padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: Constants.gray200,
+                        borderRadius: BorderRadius.circular(10.5),
+                      ),
                       child: Wrap(
                         spacing: 5,
                         runSpacing: 5,
                         children: [
-                          ...List.generate(
-                            35,
-                            (index) => const SelectableIcon(
-                              icon: Icons.biotech,
-                              onPressed: null,
+                          ...icons.map(
+                            (assetPath) => ObxValue(
+                              (data) => SelectableIcon(
+                                assetPath: assetPath,
+                                isSelected: addFieldPageController.iconName.value == assetPath,
+                                onPressed: () => addFieldPageController.iconName.value = assetPath,
+                              ),
+                              false.obs,
                             ),
                           )
                         ],
@@ -117,8 +165,7 @@ class AddFieldPage extends StatelessWidget {
                         enabledBorder: formBorderStyle,
                         focusedBorder: formBorderStyle,
                       ),
-                      onChanged: (value) =>
-                          addFieldPageController.name.value = value,
+                      onChanged: (value) => addFieldPageController.name.value = value,
                     ),
                     const SizedBox(height: 20),
                     const Text('Field Type'),
@@ -127,13 +174,11 @@ class AddFieldPage extends StatelessWidget {
                     Obx(
                       () => TextField(
                         // TODO: get text from type
-                        controller: TextEditingController(
-                            text: addFieldPageController.type.value),
+                        controller: TextEditingController(text: addFieldPageController.type.value),
                         readOnly: true,
                         onTap: () async {
                           await Get.bottomSheet(FieldTypeSelector<String>(
-                            onSelect: (value) =>
-                                addFieldPageController.type.value = value,
+                            onSelect: (value) => addFieldPageController.type.value = value,
                             //TODO: this will be field type here.
                           ));
                         },
