@@ -23,7 +23,44 @@ abstract class Constants {
   static const gray800 = Color(0xFF2D3748);
 
   // Icons
+  static const iconCalendar = 'assets/icons/calendar.svg';
+  static const iconChat = 'assets/icons/chat.svg';
+  static const iconCheck = 'assets/icons/check.svg';
+  static const iconChevronDown = 'assets/icons/chevron_down.svg';
+  static const iconColumnChart = 'assets/icons/column_chart.svg';
+  static const iconConstruction = 'assets/icons/construction.svg';
+  static const iconContacts = 'assets/icons/contacts.svg';
+  static const iconDropdown = 'assets/icons/dropdown.svg';
+  static const iconEdit = 'assets/icons/edit.svg';
+  static const iconEmail = 'assets/icons/email.svg';
+  static const iconFormula = 'assets/icons/formula.svg';
+  static const iconHome = 'assets/icons/home.svg';
+  static const iconInfo = 'assets/icons/info.svg';
+  static const iconLikeLost = 'assets/icons/like_lost.svg';
+  static const iconLikeWon = 'assets/icons/like_won.svg';
+  static const iconLineChart = 'assets/icons/line_chart.svg';
+  static const iconMicrosite = 'assets/icons/microsite.svg';
+  static const iconMoney = 'assets/icons/money.svg';
+  static const iconNumber = 'assets/icons/number.svg';
+  static const iconOwnerUser = 'assets/icons/owner_user.svg';
+  static const iconPhone = 'assets/icons/phone.svg';
+  static const iconPieChart = 'assets/icons/pie_chart.svg';
+  static const iconPin = 'assets/icons/pin.svg';
   static const iconPlusAdd = 'assets/icons/plus_add.svg';
+  static const iconPreviewDisplayShow = 'assets/icons/preview_display_show.svg';
+  static const iconProposalDesignPlus = 'assets/icons/proposal_design_plus.svg';
+  static const iconRename = 'assets/icons/rename.svg';
+  static const iconResume = 'assets/icons/resume.svg';
+  static const iconSearch = 'assets/icons/search.svg';
+  static const iconSettings = 'assets/icons/settings.svg';
+  static const iconStar = 'assets/icons/star.svg';
+  static const iconSustainabilityEco = 'assets/icons/sustainability_eco.svg';
+  static const iconTags = 'assets/icons/tags.svg';
+  static const iconTasks = 'assets/icons/tasks.svg';
+  static const iconTextDescription = 'assets/icons/text_description.svg';
+  static const iconViewOffHide = 'assets/icons/view_off_hide.svg';
+  static const iconWarning = 'assets/icons/warning.svg';
+  static const iconWebsiteInternetGlobe = 'assets/icons/website_internet_globe.svg';
 
   // Images
   static const projectMarkLogoSvg = 'assets/images/project_mark_logo.svg';
