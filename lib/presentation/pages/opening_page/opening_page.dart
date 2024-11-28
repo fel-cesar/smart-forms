@@ -9,7 +9,6 @@ import 'package:smart_forms/presentation/pages/form_page/form_list_page.dart';
 import 'package:smart_forms/presentation/pages/new_form_page/new_form_page.dart';
 
 
-
 class OpeningPage extends StatelessWidget {
   OpeningPage({super.key});
 

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:smart_forms/models/form_model.dart';
 
-import '../models/form_field.dart';
+import '../../../models/form_field.dart';
 
 // TODO: Should we connect the controllers to models or pages? (pages IMO)
 // TODO: Reorderable mixin?

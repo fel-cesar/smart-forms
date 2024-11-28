@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../models/form_model.dart';
+import '../../../models/form_model.dart';
 
 class FormListController extends GetxController {
   // FormListModel would be simply a list of forms, lets simplify for now.
