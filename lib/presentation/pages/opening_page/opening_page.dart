@@ -16,9 +16,9 @@ class OpeningPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () {
-        if (formsController.forms.isNotEmpty) {
-          return FormListPage();
-        }
+        // if (formsController.forms.isNotEmpty) {
+        //   return FormListPage();
+        // }
 
         return Scaffold(
           body: Column(
