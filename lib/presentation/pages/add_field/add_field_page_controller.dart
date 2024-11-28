@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smart_forms/models/form_field.dart';
 import 'package:smart_forms/models/form_fields/checkbox_group_form_field_model.dart';
@@ -12,8 +13,46 @@ class AddFieldPageController extends GetxController {
   // TODO: For dropdown + checkbox options (TODO: apply SOLID)
   final options = <String>[].obs;
   final optionsKeys = <String>[].obs;
-
   final textFieldType = 'single'.obs;
+
+  final arguments = Get.arguments;
+
+
+  final textFieldController = TextEditingController();
+
+  @override
+  void onReady() {
+    super.onReady();
+
+    final currentFormField = arguments as MarkFormField?;
+    if (currentFormField != null) {
+
+      type.value = currentFormField.type;
+      name.value = currentFormField.label;
+
+      textFieldController.text = currentFormField.label;
+      // TODO: Apply SOLID for specific initers
+      if (currentFormField is MarkDropdownFormFieldModel) {
+        options.value = (currentFormField).options;
+        optionsKeys.value = (currentFormField)
+            .options
+            .map((e) => DateTime.now().toString())
+            .toList();
+      }
+
+      if (currentFormField is MarkCheckboxGroupFormFieldModel) {
+        options.value = (currentFormField).options;
+        optionsKeys.value = (currentFormField)
+            .options
+            .map((e) => DateTime.now().toString())
+            .toList();
+      }
+      if (currentFormField is FormTextFieldModel) {
+        textFieldType.value = currentFormField.multiline ? 'multiline' : 'single';
+      }
+      refresh();
+    }
+  }
 
   MarkFormField get formField {
     switch (type.value) {
@@ -25,7 +64,7 @@ class AddFieldPageController extends GetxController {
           multiline: textFieldType.value == 'multiline',
         );
       case 'dropdown':
-        return MarkDropdownFormField(
+        return MarkDropdownFormFieldModel(
             id: DateTime.now().toString(),
             label: name.value,
             type: type.value,

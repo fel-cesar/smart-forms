@@ -21,7 +21,7 @@ class FormFieldToWidgetFactory {
         ],
       );
     }
-    if (field is MarkDropdownFormField) {
+    if (field is MarkDropdownFormFieldModel) {
       return Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,

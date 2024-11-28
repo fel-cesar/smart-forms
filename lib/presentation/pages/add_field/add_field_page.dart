@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:smart_forms/models/form_field.dart';
 import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
 import 'package:smart_forms/presentation/pages/form_page/form_page.dart';
 
-import '../form_page/form_page_controller.dart';
 import 'add_field_page_controller.dart';
 import 'field_type_selector.dart';
 
@@ -47,13 +47,12 @@ const icons = [
 ];
 
 class AddFieldPage extends StatelessWidget {
-  AddFieldPage({super.key});
-
-  final formController = Get.find<FormPageController>();
-  final addFieldPageController = AddFieldPageController();
+  const AddFieldPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final addFieldPageController = Get.put(AddFieldPageController());
+
     return ClipRRect(
       borderRadius: const BorderRadius.vertical(
         top: Radius.circular(17.5),
@@ -72,6 +71,7 @@ class AddFieldPage extends StatelessWidget {
                   const Spacer(),
                   GestureDetector(
                     onTap: () {
+                      Get.delete<AddFieldPageController>();
                       Get.back();
                     },
                     child: const TextBase(
@@ -82,10 +82,13 @@ class AddFieldPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 20),
+
+                  // Done button
                   Button.small(
                     onPressed: () {
-                      formController.fields.add(addFieldPageController.formField);
-                      Get.back();
+                      Get.back<MarkFormField>(
+                          result: addFieldPageController.formField);
+                      Get.delete<AddFieldPageController>();
                     },
                     text: Constants.done,
                   )
@@ -98,7 +101,8 @@ class AddFieldPage extends StatelessWidget {
             ),
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 46, vertical: 24),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 46, vertical: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -118,8 +122,11 @@ class AddFieldPage extends StatelessWidget {
                             (assetPath) => ObxValue(
                               (data) => SelectableIcon(
                                 assetPath: assetPath,
-                                isSelected: addFieldPageController.iconName.value == assetPath,
-                                onPressed: () => addFieldPageController.iconName.value = assetPath,
+                                isSelected:
+                                    addFieldPageController.iconName.value ==
+                                        assetPath,
+                                onPressed: () => addFieldPageController
+                                    .iconName.value = assetPath,
                               ),
                               false.obs,
                             ),
@@ -132,6 +139,8 @@ class AddFieldPage extends StatelessWidget {
                     const SizedBox(height: 4),
                     // TODO: extract this text field to components.
                     TextField(
+                      controller:
+                              addFieldPageController.textFieldController,
                       style: textStyles[TextSize.sm],
                       cursorColor: Constants.gray500,
                       decoration: InputDecoration(
@@ -149,7 +158,8 @@ class AddFieldPage extends StatelessWidget {
 
                     Obx(
                       () => TextField(
-                        controller: TextEditingController(text: addFieldPageController.type.value),
+                        controller: TextEditingController(
+                            text: addFieldPageController.type.value),
                         readOnly: true,
                         style: textStyles[TextSize.sm],
                         decoration: InputDecoration(
@@ -190,9 +200,12 @@ class AddFieldPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 const SizedBox(height: 20),
-                                TextXS.bold(Constants.textOptions.toUpperCase()),
+                                TextXS.bold(
+                                    Constants.textOptions.toUpperCase()),
                                 const SizedBox(height: 5),
-                                _TextOptionSelector(addFieldPageController: addFieldPageController),
+                                _TextOptionSelector(
+                                    addFieldPageController:
+                                        addFieldPageController),
                               ],
                             )
                           : const SizedBox.shrink();
@@ -207,15 +220,14 @@ class AddFieldPage extends StatelessWidget {
                                 TextXS.bold(Constants.dropdownItems.toUpperCase()),
                                 const SizedBox(height: 5),
                                 ReorderableListView.builder(
-                                  // onReorderStart: (_) {
-                                  //   FocusScope.of(context).unfocus();
-                                  // },
                                   onReorder: (oldIndex, newIndex) {
-                                    addFieldPageController.reorder(oldIndex, newIndex);
+                                    addFieldPageController.reorder(
+                                        oldIndex, newIndex);
                                   },
                                   physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
-                                  itemCount: addFieldPageController.options.length,
+                                  itemCount:
+                                      addFieldPageController.options.length,
                                   buildDefaultDragHandles: true,
                                   itemBuilder: (context, index) {
                                     return Padding(
@@ -270,15 +282,14 @@ class AddFieldPage extends StatelessWidget {
                                 TextXS.bold(Constants.checkboxItems.toUpperCase()),
                                 const SizedBox(height: 5),
                                 ReorderableListView.builder(
-                                  // onReorderStart: (_) {
-                                  //   FocusScope.of(context).unfocus();
-                                  // },
                                   onReorder: (oldIndex, newIndex) {
-                                    addFieldPageController.reorder(oldIndex, newIndex);
+                                    addFieldPageController.reorder(
+                                        oldIndex, newIndex);
                                   },
                                   physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
-                                  itemCount: addFieldPageController.options.length,
+                                  itemCount:
+                                      addFieldPageController.options.length,
                                   buildDefaultDragHandles: true,
                                   itemBuilder: (context, index) {
                                     return Padding(
@@ -375,11 +386,15 @@ class _TextOptionSelector extends StatelessWidget {
                   },
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                        vertical: addFieldPageController.textFieldType.value == 'single' ? 12 : 13),
+                        vertical: addFieldPageController.textFieldType.value ==
+                                'single'
+                            ? 12
+                            : 13),
                     child: Center(
                       child: Text(
                         Constants.single,
-                        style: addFieldPageController.textFieldType.value == 'single'
+                        style: addFieldPageController.textFieldType.value ==
+                                'single'
                             ? textStyles[TextSize.sm]!.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: Constants.gray800,
@@ -401,15 +416,16 @@ class _TextOptionSelector extends StatelessWidget {
                 color: addFieldPageController.textFieldType.value == 'multiline'
                     ? Constants.blueHighlight.withOpacity(0.15)
                     : Colors.transparent,
-                border: addFieldPageController.textFieldType.value == 'multiline'
-                    ? Border.all(
-                        color: Constants.blueHighlight,
-                        width: 2,
-                      )
-                    : Border.all(
-                        color: Constants.gray300,
-                        width: 1,
-                      ),
+                border:
+                    addFieldPageController.textFieldType.value == 'multiline'
+                        ? Border.all(
+                            color: Constants.blueHighlight,
+                            width: 2,
+                          )
+                        : Border.all(
+                            color: Constants.gray300,
+                            width: 1,
+                          ),
                 borderRadius: const BorderRadius.horizontal(
                   right: Radius.circular(10.5),
                 ),
@@ -425,11 +441,15 @@ class _TextOptionSelector extends StatelessWidget {
                   },
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                        vertical: addFieldPageController.textFieldType.value == 'multiline' ? 12 : 13),
+                        vertical: addFieldPageController.textFieldType.value ==
+                                'multiline'
+                            ? 12
+                            : 13),
                     child: Center(
                       child: Text(
                         Constants.paragraph,
-                        style: addFieldPageController.textFieldType.value == 'multiline'
+                        style: addFieldPageController.textFieldType.value ==
+                                'multiline'
                             ? textStyles[TextSize.sm]!.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: Constants.gray800,

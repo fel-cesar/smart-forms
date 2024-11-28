@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:smart_forms/models/form_field.dart';
 import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
 import 'package:smart_forms/presentation/pages/add_field/add_field_page.dart';
@@ -8,12 +9,13 @@ import 'package:smart_forms/presentation/pages/form_page/form_page_controller.da
 import 'package:smart_forms/presentation/pages/form_preview_page/form_preview_page.dart';
 
 class FormPage extends StatelessWidget {
-  FormPage({super.key});
-
-  final formController = Get.put(FormPageController(title: (Get.arguments as RxString).value));
+  const FormPage({super.key});
 
   @override
   Widget build(context) {
+    final formController =
+        Get.put(FormPageController(title: (Get.arguments as RxString).value));
+
     return Scaffold(
       floatingActionButton: Row(
         mainAxisSize: MainAxisSize.min,
@@ -34,12 +36,30 @@ class FormPage extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 21),
+
+          // Add field button
           IconButton.filled(
             style: IconButton.styleFrom(
               backgroundColor: Constants.gray800,
               padding: const EdgeInsets.all(18),
             ),
-            onPressed: () => Get.bottomSheet(AddFieldPage()),
+            onPressed: () async {
+              final formField = await Get.bottomSheet<MarkFormField?>(
+                Column(
+                  children: [
+                    NotchArea(rootContext: context),
+                    const Expanded(
+                      child: AddFieldPage(),
+                    ),
+                  ],
+                ),
+                isScrollControlled: true,
+              );
+
+              if (formField != null) {
+                formController.fields.add(formField);
+              }
+            },
             icon: const Icon(
               Icons.add,
               size: 18,
@@ -83,17 +103,26 @@ class FormPage extends StatelessWidget {
                   child: Obx(() {
                     return ReorderableListView.builder(
                       footer: DashedInputListItem(
-                        onTap: () => Get.bottomSheet(
-                          Column(
-                            children: [
-                              NotchArea(rootContext: context),
-                              Expanded(
-                                child: AddFieldPage(),
-                              ),
-                            ],
-                          ),
-                          isScrollControlled: true,
-                        ),
+                        onTap: () async {
+                          // Add FIELD tile
+                          final newFormField =
+                              await Get.bottomSheet<MarkFormField?>(
+                            Column(
+                              children: [
+                                NotchArea(rootContext: context),
+                                const Expanded(
+                                  child: AddFieldPage(),
+                                ),
+                              ],
+                            ),
+                            isScrollControlled: true,
+                          );
+
+                          print(newFormField.toString());
+                          if (newFormField != null) {
+                            formController.fields.add(newFormField);
+                          }
+                        },
                       ),
                       onReorder: (oldIndex, newIndex) {
                         formController.reorder(oldIndex, newIndex);
@@ -101,25 +130,58 @@ class FormPage extends StatelessWidget {
                       itemCount: formController.fields.length,
                       itemBuilder: (context, index) {
                         final formField = formController.fields[index];
-                        return Padding(
+                        return GestureDetector(
                           key: ValueKey(formField.id),
-                          padding: const EdgeInsets.only(bottom: 14),
-                          child: DraggableInput(
-                            leading: ReorderableDragStartListener(
-                              index: index,
-                              child: const Icon(
-                                Icons.drag_indicator_sharp,
-                                color: Constants.gray600,
+                          onTap: () async {
+                            // TEMP EDITING
+                            final newFormField =
+                                await Get.bottomSheet<MarkFormField?>(
+                              Column(
+                                children: [
+                                  NotchArea(rootContext: context),
+                                  const Expanded(
+                                    child: AddFieldPage(),
+                                  ),
+                                ],
                               ),
-                            ),
-                            trailing: IconButton(
-                              icon: const Icon(
-                                Icons.more_horiz,
-                                color: Constants.gray800,
+                              isScrollControlled: true,
+                              settings: RouteSettings(
+                                  arguments: formController.fields[index]),
+                            );
+
+                            print(newFormField.toString());
+                            print(newFormField?.label);
+
+                            if (newFormField != null) {
+                              formController.fields.removeAt(index);
+                              formController.fields.insert(index, newFormField);
+                              // formController.fields[index] = formField;
+                              // formController.
+                              // formController.update();
+                            }
+                          },
+                          child: Padding(
+                            key: ValueKey(formField.id),
+                            padding: const EdgeInsets.only(bottom: 14),
+                            child: DraggableInput(
+                              leading: ReorderableDragStartListener(
+                                index: index,
+                                child: const Icon(
+                                  Icons.drag_indicator_sharp,
+                                  color: Constants.gray600,
+                                ),
                               ),
-                              onPressed: () => formController.removeField(formField.id),
+                              trailing: IconButton(
+                                icon: const Icon(
+                                  Icons.more_horiz,
+                                  color: Constants.gray800,
+                                ),
+                                onPressed: () =>
+                                    formController.removeField(formField.id),
+                              ),
+                              child:
+                                  TextBase(formController.fields[index].label),
                             ),
-                            child: TextBase(formField.label),
                           ),
                         );
                       },

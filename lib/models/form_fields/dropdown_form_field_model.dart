@@ -1,11 +1,11 @@
 // models/dropdown_form_field.dart
 import '../form_field.dart';
 
-class MarkDropdownFormField extends MarkFormField {
+class MarkDropdownFormFieldModel extends MarkFormField {
   final List<String> options;
   String selectedValue;
 
-  MarkDropdownFormField({
+  MarkDropdownFormFieldModel({
     required super.id,
     required super.label,
     required this.options,
