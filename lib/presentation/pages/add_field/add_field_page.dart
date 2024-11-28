@@ -53,15 +53,6 @@ class AddFieldPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const formBorderStyle = OutlineInputBorder(
-      borderSide: BorderSide(
-        color: Constants.gray400,
-      ),
-      borderRadius: BorderRadius.all(
-        Radius.circular(17.5),
-      ),
-    );
-
     return ClipRRect(
       borderRadius: const BorderRadius.vertical(
         top: Radius.circular(17.5),
@@ -142,13 +133,9 @@ class AddFieldPage extends StatelessWidget {
                     TextField(
                       style: const TextStyle(fontSize: 12.25),
                       cursorColor: Constants.gray500,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: Constants.formTitle,
-                        hintStyle: TextStyle(
-                          color: Constants.gray500,
-                          fontSize: 12.25,
-                          fontWeight: FontWeight.w400,
-                        ),
+                        hintStyle: textStyles[TextSize.sm]?.copyWith(color: Constants.gray500),
                         border: formBorderStyle,
                         enabledBorder: formBorderStyle,
                         focusedBorder: formBorderStyle,
@@ -163,6 +150,20 @@ class AddFieldPage extends StatelessWidget {
                       () => TextField(
                         controller: TextEditingController(text: addFieldPageController.type.value),
                         readOnly: true,
+                        style: textStyles[TextSize.sm],
+                        decoration: InputDecoration(
+                          border: formBorderStyle,
+                          enabledBorder: formBorderStyle,
+                          focusedBorder: formBorderStyle,
+                          suffixIcon: SizedBox(
+                            width: 8,
+                            child: Center(
+                              child: SvgPicture.asset(Constants.iconChevronDown),
+                            ),
+                          ),
+                          hintText: Constants.formTitle,
+                          hintStyle: textStyles[TextSize.sm]?.copyWith(color: Constants.gray500),
+                        ),
                         onTap: () async {
                           await Get.bottomSheet(Column(
                             children: [
@@ -179,23 +180,6 @@ class AddFieldPage extends StatelessWidget {
                             ],
                           ));
                         },
-
-                        style: const TextStyle(fontSize: 12.25),
-                        cursorColor: Constants.gray500,
-                        decoration: InputDecoration(
-                          suffixIcon: SizedBox(
-                            width: 8,
-                            child: Center(
-                              child: SvgPicture.asset(Constants.iconChevronDown),
-                            ),
-                          ),
-                          hintText: Constants.formTitle,
-                          hintStyle: const TextStyle(
-                            color: Constants.gray500,
-                            fontSize: 12.25,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
                       ),
                     ),
 
