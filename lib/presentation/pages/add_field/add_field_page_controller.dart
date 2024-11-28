@@ -9,8 +9,12 @@ class AddFieldPageController extends GetxController {
   final name = ''.obs;
   final iconName = ''.obs;
 
+
+  // final options = <String>[].obs;
+
   // TODO: These will be dynamic, these values are just placeholders
-  final options = <String>['das', 'daskjhdalksj', 'dsakjdba'].obs;
+  final options = <String>[].obs;
+
 
   MarkFormField get formField {
     switch (type.value) {

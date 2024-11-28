@@ -18,7 +18,7 @@ const icons = [
   Constants.iconContacts,
   Constants.iconCalendar,
   Constants.iconSettings,
-  Constants.iconOwnerUser,
+  // Constants.iconOwnerUser,
   Constants.iconPieChart,
   Constants.iconLineChart,
   Constants.iconRename,
@@ -99,7 +99,8 @@ class AddFieldPage extends StatelessWidget {
                   const SizedBox(width: 20),
                   Button.small(
                     onPressed: () {
-                      formController.fields.add(addFieldPageController.formField); // TODO: remove hardcoded values
+                      formController.fields
+                          .add(addFieldPageController.formField);
                       Get.back();
                     },
                     text: Constants.done,
@@ -113,7 +114,8 @@ class AddFieldPage extends StatelessWidget {
             ),
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 46, vertical: 24),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 46, vertical: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
@@ -139,8 +141,11 @@ class AddFieldPage extends StatelessWidget {
                             (assetPath) => ObxValue(
                               (data) => SelectableIcon(
                                 assetPath: assetPath,
-                                isSelected: addFieldPageController.iconName.value == assetPath,
-                                onPressed: () => addFieldPageController.iconName.value = assetPath,
+                                isSelected:
+                                    addFieldPageController.iconName.value ==
+                                        assetPath,
+                                onPressed: () => addFieldPageController
+                                    .iconName.value = assetPath,
                               ),
                               false.obs,
                             ),
@@ -172,7 +177,8 @@ class AddFieldPage extends StatelessWidget {
                         enabledBorder: formBorderStyle,
                         focusedBorder: formBorderStyle,
                       ),
-                      onChanged: (value) => addFieldPageController.name.value = value,
+                      onChanged: (value) =>
+                          addFieldPageController.name.value = value,
                     ),
                     const SizedBox(height: 20),
                     Text(
@@ -187,12 +193,15 @@ class AddFieldPage extends StatelessWidget {
                     Obx(
                       () => TextField(
                         // TODO: get text from type
-                        controller: TextEditingController(text: addFieldPageController.type.value),
+                        controller: TextEditingController(
+                            text: addFieldPageController.type.value),
                         readOnly: true,
                         onTap: () async {
                           await Get.bottomSheet(FieldTypeSelector<String>(
-                            onSelect: (value) => addFieldPageController.type.value = value,
-                            //TODO: this will be field type here.
+                            onSelect: (value) {
+                              addFieldPageController.options.clear();
+                              addFieldPageController.type.value = value;
+                            },
                           ));
                         },
 
@@ -202,7 +211,8 @@ class AddFieldPage extends StatelessWidget {
                           suffixIcon: SizedBox(
                             width: 8,
                             child: Center(
-                              child: SvgPicture.asset(Constants.iconChevronDown),
+                              child:
+                                  SvgPicture.asset(Constants.iconChevronDown),
                             ),
                           ),
                           hintText: Constants.formTitle,
@@ -211,14 +221,91 @@ class AddFieldPage extends StatelessWidget {
                             fontSize: 12.25,
                             fontWeight: FontWeight.w400,
                           ),
-                          border: formBorderStyle,
-                          enabledBorder: formBorderStyle,
-                          focusedBorder: formBorderStyle,
                         ),
                       ),
-
-                      //TODO: Here will go the field specific options. e.g. for dropdown and checkboxGroup, we will have a list of options
                     ),
+
+                    Obx(() {
+                      return addFieldPageController.type.value == 'text'
+                          ? const Text('TEXT configs')
+                          : const SizedBox.shrink();
+                    }),
+
+                    Obx(() {
+                      return addFieldPageController.type.value == 'dropdown'
+                          ? ReorderableListView.builder(
+                              onReorder: (oldIndex, newIndex) {
+                                // TODO: proper reordering
+                              },
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount:
+                                  addFieldPageController.options.length + 1,
+                              buildDefaultDragHandles: true,
+                              itemBuilder: (context, index) {
+                                if (index <
+                                    addFieldPageController.options.length) {
+                                  return ListTile(
+                                    key: Key(index.toString()),
+                                    title: TextField(onChanged: (value) {
+                                      addFieldPageController.options[index] =
+                                          value;
+                                    }),
+                                    leading: ReorderableDragStartListener(
+                                      index: index,
+                                      child: const Icon(Icons.drag_handle),
+                                    ),
+                                  );
+                                }
+                                return Button.small(
+                                  key: Key(index.toString()),
+                                  text: 'add field',
+                                  onPressed: () {
+                                    addFieldPageController.options.add('');
+                                  },
+                                );
+                              },
+                            )
+                          : const SizedBox.shrink();
+                    }),
+
+                    Obx(() {
+                      return addFieldPageController.type.value == 'checkbox'
+                          ? ReorderableListView.builder(
+                              onReorder: (oldIndex, newIndex) {
+                                // TODO: proper reordering
+                              },
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount:
+                                  addFieldPageController.options.length + 1,
+                              buildDefaultDragHandles: true,
+                              itemBuilder: (context, index) {
+                                if (index <
+                                    addFieldPageController.options.length) {
+                                  return ListTile(
+                                    key: Key(index.toString()),
+                                    title: TextField(onChanged: (value) {
+                                      addFieldPageController.options[index] =
+                                          value;
+                                    }),
+                                    leading: ReorderableDragStartListener(
+                                      index: index,
+                                      child: const Icon(Icons.drag_handle),
+                                    ),
+                                  );
+                                }
+                                return Button.small(
+                                  key: Key(index.toString()),
+                                  text: 'add field',
+                                  onPressed: () {
+                                    addFieldPageController.options.add('');
+                                  },
+                                );
+                              },
+                            )
+                          : const SizedBox.shrink();
+                    }),
                   ],
                 ),
               ),
