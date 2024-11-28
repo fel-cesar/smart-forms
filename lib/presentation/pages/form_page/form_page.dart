@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
 import 'package:smart_forms/presentation/pages/add_field/add_field_page.dart';
-import 'package:smart_forms/controllers/form_page_controller.dart';
 import 'package:smart_forms/presentation/pages/form_list_page/form_list_page_controller.dart';
+import 'package:smart_forms/presentation/pages/form_page/form_page_controller.dart';
+import 'package:smart_forms/presentation/pages/form_preview_page/form_preview_page.dart';
 
 class FormPage extends StatelessWidget {
   FormPage({super.key});
@@ -23,6 +24,22 @@ class FormPage extends StatelessWidget {
               backgroundColor: Constants.gray800,
               padding: const EdgeInsets.all(18),
             ),
+            onPressed: () {
+              final formListController = Get.find<FormListPageController>();
+              formListController.addForm(formController.form);
+              Get.back();
+            },
+            icon: const Icon(
+              Icons.check,
+              size: 18,
+            ),
+          ),
+          const SizedBox(width: 21),
+          IconButton.filled(
+            style: IconButton.styleFrom(
+              backgroundColor: Constants.gray800,
+              padding: const EdgeInsets.all(18),
+            ),
             onPressed: () => Get.bottomSheet(AddFieldPage()),
             icon: const Icon(
               Icons.add,
@@ -35,28 +52,15 @@ class FormPage extends StatelessWidget {
               backgroundColor: Constants.gray800,
               padding: const EdgeInsets.all(18),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Get.to(FormPreviewPage(), transition: Transition.noTransition);
+            },
             icon: const Icon(
               Icons.visibility,
               size: 18,
             ),
           ),
           const SizedBox(width: 21),
-          IconButton.filled(
-            style: IconButton.styleFrom(
-              backgroundColor: Constants.gray800,
-              padding: const EdgeInsets.all(18),
-            ),
-            onPressed: () {
-              final formListController = Get.find<FormListPageController>();
-              formListController.addForm(formController.form);
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.check,
-              size: 18,
-            ),
-          ),
         ],
       ),
       body: SafeArea(

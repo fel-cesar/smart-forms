@@ -6,7 +6,7 @@ import '../../../models/form_field.dart';
 // TODO: Should we connect the controllers to models or pages? (pages IMO)
 // TODO: Reorderable mixin?
 class FormPageController extends GetxController {
-  final fields = <FormField>[].obs;
+  final fields = <MarkFormField>[].obs;
 
   final String title;
   late FormModel
@@ -19,7 +19,7 @@ class FormPageController extends GetxController {
         fields: fields);
   }
 
-  void addField(FormField field) {
+  void addField(MarkFormField field) {
     fields.add(field);
   }
 
@@ -31,7 +31,7 @@ class FormPageController extends GetxController {
     if (originIndex < destinationIndex) {
       destinationIndex -= 1;
     }
-    final FormField form = fields.removeAt(originIndex);
+    final MarkFormField form = fields.removeAt(originIndex);
     fields.insert(destinationIndex, form);
   }
 }

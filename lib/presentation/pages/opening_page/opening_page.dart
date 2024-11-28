@@ -10,7 +10,8 @@ import 'package:smart_forms/presentation/pages/new_form_page/new_form_page.dart'
 class OpeningPage extends StatelessWidget {
   OpeningPage({super.key});
 
-  final FormListPageController formsController = Get.put(FormListPageController());
+  final FormListPageController formsController =
+      Get.put(FormListPageController());
 
   @override
   Widget build(BuildContext context) {

@@ -102,6 +102,7 @@ class AddFieldPage extends StatelessWidget {
                     const SizedBox(height: 20),
                     const Text('Field Name'),
                     const SizedBox(height: 4),
+                    // TODO: extract this text field to components.
                     TextField(
                       style: const TextStyle(fontSize: 12.25),
                       cursorColor: Constants.gray500,
@@ -122,6 +123,7 @@ class AddFieldPage extends StatelessWidget {
                     const SizedBox(height: 20),
                     const Text('Field Type'),
                     const SizedBox(height: 4),
+
                     Obx(
                       () => TextField(
                         // TODO: get text from type
@@ -151,6 +153,8 @@ class AddFieldPage extends StatelessWidget {
                           focusedBorder: formBorderStyle,
                         ),
                       ),
+
+                      //TODO: Here will go the field specific options. e.g. for dropdown and checkboxGroup, we will have a list of options
                     ),
                   ],
                 ),

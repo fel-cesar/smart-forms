@@ -23,7 +23,10 @@ class SelectableIcon extends StatelessWidget {
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: isSelected ? Constants.blueHighlight : Colors.transparent, width: 2),
+            border: Border.all(
+                color:
+                    isSelected ? Constants.blueHighlight : Colors.transparent,
+                width: 2),
             borderRadius: const BorderRadius.all(Radius.circular(7)),
           ),
           child: Icon(icon ?? Icons.ac_unit),
