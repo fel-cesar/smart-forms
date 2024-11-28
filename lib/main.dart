@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:smart_forms/buttons.dart';
 import 'package:smart_forms/constants.dart';
+import 'package:smart_forms/new_form_page.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    const GetMaterialApp(
+      home: MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -15,12 +22,6 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Archivo',
         scaffoldBackgroundColor: Constants.gray200,
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Constants.blueHighlight,
-            foregroundColor: Colors.white,
-          ),
-        ),
       ),
       home: Scaffold(
         body: Column(
@@ -37,7 +38,7 @@ class MainApp extends StatelessWidget {
                     const Text(
                       Constants.smartForms,
                       style: TextStyle(
-                        color: Constants.grey800,
+                        color: Constants.gray800,
                         fontSize: 42,
                         fontWeight: FontWeight.bold,
                       ),
@@ -54,21 +55,9 @@ class MainApp extends StatelessWidget {
                 ),
                 color: Colors.white,
               ),
-              child: ElevatedButton(
-                onPressed: () {},
-                child: const Column(
-                  children: [
-                    SizedBox(height: 20),
-                    Text(
-                      Constants.createNewForm,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                  ],
-                ),
+              child: Button.jumbo(
+                onPressed: () => Get.bottomSheet(const NewFormPage()),
+                text: Constants.createNewForm,
               ),
             ),
           ],
