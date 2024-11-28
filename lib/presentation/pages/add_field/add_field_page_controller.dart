@@ -13,6 +13,7 @@ class AddFieldPageController extends GetxController {
   final options = <String>[].obs;
   final optionsKeys = <String>[].obs;
 
+  final textFieldType = 'single'.obs;
 
   MarkFormField get formField {
     switch (type.value) {
@@ -21,6 +22,7 @@ class AddFieldPageController extends GetxController {
           id: DateTime.now().toString(),
           label: name.value,
           type: type.value,
+          multiline: textFieldType.value == 'multiline',
         );
       case 'dropdown':
         return MarkDropdownFormField(

@@ -11,7 +11,7 @@ import '../../models/form_fields/form_text_field_model.dart';
 class FormFieldToWidgetFactory {
   static Widget buildFormField(MarkFormField field) {
     if (field is FormTextFieldModel) {
-      return const MarkTextField();
+      return  MarkTextField(multiline: field.multiline);
     }
     if (field is MarkDropdownFormField) {
       return MarkDropdown(label: field.label, options: field.options);

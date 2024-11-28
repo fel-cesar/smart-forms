@@ -6,8 +6,9 @@ import 'ui_constants.dart';
 class MarkTextField extends StatelessWidget {
   final String title;
   final String hintText;
+  final bool multiline;
 
-  const MarkTextField({super.key, this.title = '', this.hintText = ''});
+  const MarkTextField({super.key, this.title = '', this.hintText = '',  this.multiline = false});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,7 @@ class MarkTextField extends StatelessWidget {
       children: [
         if (title.isNotEmpty) Text(title), // TODO: Proper font and size here
         TextField(
+          maxLines: multiline? null: 1,
           style: const TextStyle(fontSize: 12.25),
           cursorColor: Constants.gray500,
           decoration: InputDecoration(

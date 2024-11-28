@@ -177,11 +177,11 @@ class AddFieldPage extends StatelessWidget {
                               const NotchArea(),
                               Expanded(
                                 child: FieldTypeSelector<String>(
-                            onSelect: (value) {
-                              addFieldPageController.options.clear();
-                              addFieldPageController.optionsKeys.clear();
-                              addFieldPageController.type.value = value;
-                            },
+                                  onSelect: (value) {
+                                    addFieldPageController.options.clear();
+                                    addFieldPageController.optionsKeys.clear();
+                                    addFieldPageController.type.value = value;
+                                  },
                                 ),
                               ),
                             ],
@@ -210,7 +210,21 @@ class AddFieldPage extends StatelessWidget {
 
                     Obx(() {
                       return addFieldPageController.type.value == 'text'
-                          ? const Text('TEXT configs')
+                          ? SegmentedButton<String>(
+                            emptySelectionAllowed: false,
+                            multiSelectionEnabled: false,
+                            showSelectedIcon: false,
+                            onSelectionChanged: (p0) {
+                                  addFieldPageController.textFieldType.value = p0.first;
+                            },
+                              segments: const [
+                                ButtonSegment<String>(
+                                    label: Text('single line'), value: 'single'),
+                                ButtonSegment<String>(
+                                    label: Text('multiline'), value: 'multiline'),
+                              ],
+                              selected:  {addFieldPageController.textFieldType.value},
+                            )
                           : const SizedBox.shrink();
                     }),
 
