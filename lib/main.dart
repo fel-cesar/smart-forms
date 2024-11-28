@@ -9,8 +9,7 @@ void main() {
       theme: ThemeData(
         fontFamily: 'Archivo',
         scaffoldBackgroundColor: Constants.gray200,
-        canvasColor: Colors.transparent,
-        shadowColor: Colors.transparent,
+        canvasColor: Colors.white,
       ),
       home: OpeningPage(),
     ),
