@@ -38,7 +38,7 @@ class FormPreviewPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(14),
+              padding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
               child: Text(
                 formController.form.title,
                 style: const TextStyle(

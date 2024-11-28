@@ -52,7 +52,17 @@ class OpeningPage extends StatelessWidget {
                   color: Colors.white,
                 ),
                 child: Button.jumbo(
-                  onPressed: () => Get.bottomSheet(NewFormPage()),
+                  onPressed: () => Get.bottomSheet(
+                    Column(
+                      children: [
+                        NotchArea(rootContext: context),
+                        Expanded(
+                          child: NewFormPage(),
+                        ),
+                      ],
+                    ),
+                    isScrollControlled: true,
+                  ),
                   text: Constants.createNewForm,
                 ),
               ),

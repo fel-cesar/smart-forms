@@ -25,6 +25,7 @@ abstract class Constants {
   static const gray300 = Color(0xFFE2E8F0);
   static const gray400 = Color(0xFFCBD5E0);
   static const gray500 = Color(0xFFA0AEC0);
+  static const gray600 = Color(0xFF718096);
   static const gray800 = Color(0xFF2D3748);
 
   // Icons

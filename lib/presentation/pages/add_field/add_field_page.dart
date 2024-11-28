@@ -174,11 +174,18 @@ class AddFieldPage extends StatelessWidget {
                             text: addFieldPageController.type.value),
                         readOnly: true,
                         onTap: () async {
-                          await Get.bottomSheet(FieldTypeSelector<String>(
+                          await Get.bottomSheet(Column(
+                            children: [
+                              const NotchArea(),
+                              Expanded(
+                                child: FieldTypeSelector<String>(
                             onSelect: (value) {
                               addFieldPageController.options.clear();
                               addFieldPageController.type.value = value;
                             },
+                                ),
+                              ),
+                            ],
                           ));
                         },
 

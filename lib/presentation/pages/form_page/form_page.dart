@@ -67,7 +67,7 @@ class FormPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(14),
+              padding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
               child: TextXL3.bold(formController.form.title),
             ),
             Expanded(
@@ -83,7 +83,17 @@ class FormPage extends StatelessWidget {
                   child: Obx(() {
                     return ReorderableListView.builder(
                       footer: DashedInputListItem(
-                        onTap: () => Get.bottomSheet(AddFieldPage()),
+                        onTap: () => Get.bottomSheet(
+                          Column(
+                            children: [
+                              NotchArea(rootContext: context),
+                              Expanded(
+                                child: AddFieldPage(),
+                              ),
+                            ],
+                          ),
+                          isScrollControlled: true,
+                        ),
                       ),
                       onReorder: (oldIndex, newIndex) {
                         formController.reorder(oldIndex, newIndex);
