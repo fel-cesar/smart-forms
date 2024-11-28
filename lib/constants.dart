@@ -11,7 +11,8 @@ abstract class Constants {
   static const formTitle = 'Form Title';
   static const newForm = 'New Form';
   static const smartForms = 'Smart Forms';
-
+  static const formsList = 'Forms List';
+  
   // Colors
   static const blueHighlight = Color(0xFF2462D1);
   static const gray100 = Color(0xFFF7FAFC);

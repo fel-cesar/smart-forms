@@ -10,7 +10,7 @@ void main() {
         fontFamily: 'Archivo',
         scaffoldBackgroundColor: Constants.gray200,
       ),
-      home: const OpeningPage(),
+      home: OpeningPage(),
     ),
   );
 }
