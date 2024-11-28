@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:smart_forms/models/form_field.dart';
+import 'package:smart_forms/models/form_fields/checkbox_group_form_field_model.dart';
 import 'package:smart_forms/models/form_fields/dropdown_form_field_model.dart';
 import 'package:smart_forms/models/form_fields/form_text_field_model.dart';
 
@@ -8,7 +9,7 @@ class AddFieldPageController extends GetxController {
   final name = ''.obs;
   final iconName = ''.obs;
 
-  // TODO: these will be dynamic, these values are just placeholders
+  // TODO: These will be dynamic, these values are just placeholders
   final options = <String>['das', 'daskjhdalksj', 'dsakjdba'].obs;
 
   MarkFormField get formField {
@@ -27,6 +28,14 @@ class AddFieldPageController extends GetxController {
           type: type.value,
           options: options,
           selectedValue: options[0],
+        );
+      case 'checkbox':
+        return MarkCheckboxGroupFormFieldModel(
+          id: DateTime.now().toString(),
+          label: name.value,
+          type: type.value,
+          options: options,
+          // selectedValue: options[0],
         );
 
       default:

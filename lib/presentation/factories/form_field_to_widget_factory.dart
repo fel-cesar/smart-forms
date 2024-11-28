@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:smart_forms/models/form_fields/checkbox_group_form_field_model.dart';
 import 'package:smart_forms/models/form_fields/dropdown_form_field_model.dart';
+import 'package:smart_forms/presentation/components/checkbox_group.dart';
 import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/presentation/components/dropdown.dart';
 
@@ -13,6 +15,9 @@ class FormFieldToWidgetFactory {
     }
     if (field is MarkDropdownFormField) {
       return MarkDropdown(label: field.label, options: field.options);
+    }
+    if (field is MarkCheckboxGroupFormFieldModel) {
+      return const MarkCheckboxGroup();
     }
 
     // Add more mappings for other field types here
