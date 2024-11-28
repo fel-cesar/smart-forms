@@ -65,9 +65,6 @@ class AddFieldPageController extends GetxController {
       }
       refresh();
     }
-
-
-    // iconPath.value = defaultIconPath;
   }
 
   MarkFormField get formField {
