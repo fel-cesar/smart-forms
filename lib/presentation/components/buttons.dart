@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_forms/constants.dart';
+import 'package:smart_forms/presentation/components/text.dart';
 
 class Button extends StatelessWidget {
   Button.small({super.key, required this.onPressed, this.text})
@@ -12,10 +13,7 @@ class Button extends StatelessWidget {
           disabledForegroundColor: Colors.white,
           minimumSize: const Size.fromHeight(24.0),
         ),
-        textStyle = const TextStyle(
-          fontSize: 10.5,
-          fontWeight: FontWeight.bold,
-        );
+        textStyle = textStyles[TextSize.xs]!.copyWith(fontWeight: FontWeight.bold);
 
   Button.jumbo({super.key, required this.onPressed, this.text})
       : style = ElevatedButton.styleFrom(
@@ -27,10 +25,7 @@ class Button extends StatelessWidget {
           disabledForegroundColor: Colors.white,
           minimumSize: const Size.fromHeight(56.0),
         ),
-        textStyle = const TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.bold,
-        );
+        textStyle = textStyles[TextSize.base]!.copyWith(fontWeight: FontWeight.bold);
 
   final void Function()? onPressed;
   final String? text;

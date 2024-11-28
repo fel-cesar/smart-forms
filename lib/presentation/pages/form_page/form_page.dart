@@ -10,8 +10,7 @@ import 'package:smart_forms/presentation/pages/form_preview_page/form_preview_pa
 class FormPage extends StatelessWidget {
   FormPage({super.key});
 
-  final formController =
-      Get.put(FormPageController(title: (Get.arguments as RxString).value));
+  final formController = Get.put(FormPageController(title: (Get.arguments as RxString).value));
 
   @override
   Widget build(context) {
@@ -69,14 +68,7 @@ class FormPage extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(14),
-              child: Text(
-                formController.form.title,
-                style: const TextStyle(
-                  fontSize: 26.25,
-                  fontWeight: FontWeight.bold,
-                  color: Constants.gray800,
-                ),
-              ),
+              child: TextXL3.bold(formController.form.title),
             ),
             Expanded(
               child: Container(
@@ -103,11 +95,10 @@ class FormPage extends StatelessWidget {
                         return ListTile(
                           key: ValueKey(formField.id),
 
-                          title: Text(formField.label),
+                          title: TextBase(formField.label),
                           trailing: IconButton(
                             icon: const Icon(Icons.delete),
-                            onPressed: () =>
-                                formController.removeField(formField.id),
+                            onPressed: () => formController.removeField(formField.id),
                           ),
 
                           // TODO: put DS icon here

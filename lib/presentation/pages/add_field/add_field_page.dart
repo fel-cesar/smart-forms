@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
+import 'package:smart_forms/presentation/components/text.dart';
 
 import '../form_page/form_page_controller.dart';
 import 'add_field_page_controller.dart';
@@ -77,19 +78,13 @@ class AddFieldPage extends StatelessWidget {
               padding: const EdgeInsets.all(14),
               child: Row(
                 children: [
-                  const Text(
-                    Constants.addField,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  const TextBase.bold(Constants.addField),
                   const Spacer(),
                   GestureDetector(
                     onTap: () {
                       Get.back();
                     },
-                    child: const Text(
+                    child: const TextBase(
                       Constants.cancel,
                       style: TextStyle(
                         color: Constants.blueHighlight,
@@ -119,13 +114,7 @@ class AddFieldPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
-                      Constants.icon.toUpperCase(),
-                      style: const TextStyle(
-                        fontSize: 10.5,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    TextXS.bold(Constants.icon.toUpperCase()),
                     const SizedBox(height: 4),
                     Container(
                       padding: const EdgeInsets.all(5),
@@ -154,13 +143,7 @@ class AddFieldPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Text(
-                      Constants.fieldName.toUpperCase(),
-                      style: const TextStyle(
-                        fontSize: 10.5,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    TextXS.bold(Constants.fieldName.toUpperCase()),
                     const SizedBox(height: 4),
                     // TODO: extract this text field to components.
                     TextField(
@@ -181,13 +164,7 @@ class AddFieldPage extends StatelessWidget {
                           addFieldPageController.name.value = value,
                     ),
                     const SizedBox(height: 20),
-                    Text(
-                      Constants.fieldType.toUpperCase(),
-                      style: const TextStyle(
-                        fontSize: 10.5,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    TextXS.bold(Constants.fieldType.toUpperCase()),
                     const SizedBox(height: 4),
 
                     Obx(

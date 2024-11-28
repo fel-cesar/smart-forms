@@ -134,14 +134,7 @@ class _FieldTypeTile<T> extends StatelessWidget {
               leading,
               const SizedBox(width: 20),
             ],
-            if (text case final text?)
-              Text(
-                text,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+            if (text case final text?) TextBase.bold(text),
           ],
         ),
       ),

@@ -33,13 +33,7 @@ class NewFormPage extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Text(
-                  Constants.newForm,
-                  style: TextStyle(
-                    fontSize: 31.5,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                const TextXL4.bold(Constants.newForm),
                 const Spacer(),
                 Button.small(
                   onPressed: Get.back,
@@ -52,13 +46,9 @@ class NewFormPage extends StatelessWidget {
             TextField(
               style: const TextStyle(fontSize: 12.25),
               cursorColor: Constants.gray500,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: Constants.formTitle,
-                hintStyle: TextStyle(
-                  color: Constants.gray500,
-                  fontSize: 12.25,
-                  fontWeight: FontWeight.w400,
-                ),
+                hintStyle: textStyles[TextSize.sm]!.copyWith(color: Constants.gray500),
                 border: formBorderStyle,
                 enabledBorder: formBorderStyle,
                 focusedBorder: formBorderStyle,
