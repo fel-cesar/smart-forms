@@ -14,8 +14,11 @@ abstract class Constants {
   static const formTitle = 'Form Title';
   static const icon = 'Icon';
   static const newForm = 'New Form';
+  static const paragraph = 'Paragraph';
+  static const single = 'Single';
   static const smartForms = 'Smart Forms';
   static const text = 'Text';
+  static const textOptions = 'Text Options';
   static const formsList = 'Forms List';
 
   // Colors
@@ -36,6 +39,7 @@ abstract class Constants {
   static const iconColumnChart = 'assets/icons/column_chart.svg';
   static const iconConstruction = 'assets/icons/construction.svg';
   static const iconContacts = 'assets/icons/contacts.svg';
+  static const iconDrag = 'assets/icons/drag.svg';
   static const iconDropdown = 'assets/icons/dropdown.svg';
   static const iconEdit = 'assets/icons/edit.svg';
   static const iconEmail = 'assets/icons/email.svg';

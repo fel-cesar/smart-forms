@@ -210,20 +210,14 @@ class AddFieldPage extends StatelessWidget {
 
                     Obx(() {
                       return addFieldPageController.type.value == 'text'
-                          ? SegmentedButton<String>(
-                            emptySelectionAllowed: false,
-                            multiSelectionEnabled: false,
-                            showSelectedIcon: false,
-                            onSelectionChanged: (p0) {
-                                  addFieldPageController.textFieldType.value = p0.first;
-                            },
-                              segments: const [
-                                ButtonSegment<String>(
-                                    label: Text('single line'), value: 'single'),
-                                ButtonSegment<String>(
-                                    label: Text('multiline'), value: 'multiline'),
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                const SizedBox(height: 20),
+                                TextXS.bold(Constants.textOptions.toUpperCase()),
+                                const SizedBox(height: 5),
+                                _TextOptionSelector(addFieldPageController: addFieldPageController),
                               ],
-                              selected:  {addFieldPageController.textFieldType.value},
                             )
                           : const SizedBox.shrink();
                     }),
@@ -333,6 +327,123 @@ class AddFieldPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+// TODO: Refactor duplicate code.
+class _TextOptionSelector extends StatelessWidget {
+  const _TextOptionSelector({required this.addFieldPageController});
+
+  final AddFieldPageController addFieldPageController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => Row(
+        children: [
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                color: addFieldPageController.textFieldType.value == 'single'
+                    ? Constants.blueHighlight.withOpacity(0.15)
+                    : Colors.transparent,
+                border: addFieldPageController.textFieldType.value == 'single'
+                    ? Border.all(
+                        color: Constants.blueHighlight,
+                        width: 2,
+                      )
+                    : Border.all(
+                        color: Constants.gray300,
+                        width: 1,
+                      ),
+                borderRadius: const BorderRadius.horizontal(
+                  left: Radius.circular(10.5),
+                ),
+              ),
+              child: Material(
+                type: MaterialType.transparency,
+                child: InkWell(
+                  borderRadius: const BorderRadius.horizontal(
+                    left: Radius.circular(10.5),
+                  ),
+                  onTap: () {
+                    addFieldPageController.textFieldType.value = 'single';
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        vertical: addFieldPageController.textFieldType.value == 'single' ? 12 : 13),
+                    child: Center(
+                      child: Text(
+                        Constants.single,
+                        style: addFieldPageController.textFieldType.value == 'single'
+                            ? textStyles[TextSize.sm]!.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Constants.gray800,
+                              )
+                            : textStyles[TextSize.sm]!.copyWith(
+                                fontWeight: FontWeight.w400,
+                                color: Constants.gray600,
+                              ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                color: addFieldPageController.textFieldType.value == 'multiline'
+                    ? Constants.blueHighlight.withOpacity(0.15)
+                    : Colors.transparent,
+                border: addFieldPageController.textFieldType.value == 'multiline'
+                    ? Border.all(
+                        color: Constants.blueHighlight,
+                        width: 2,
+                      )
+                    : Border.all(
+                        color: Constants.gray300,
+                        width: 1,
+                      ),
+                borderRadius: const BorderRadius.horizontal(
+                  right: Radius.circular(10.5),
+                ),
+              ),
+              child: Material(
+                type: MaterialType.transparency,
+                child: InkWell(
+                  borderRadius: const BorderRadius.horizontal(
+                    right: Radius.circular(10.5),
+                  ),
+                  onTap: () {
+                    addFieldPageController.textFieldType.value = 'multiline';
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        vertical: addFieldPageController.textFieldType.value == 'multiline' ? 12 : 13),
+                    child: Center(
+                      child: Text(
+                        Constants.paragraph,
+                        style: addFieldPageController.textFieldType.value == 'multiline'
+                            ? textStyles[TextSize.sm]!.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Constants.gray800,
+                              )
+                            : textStyles[TextSize.sm]!.copyWith(
+                                fontWeight: FontWeight.w400,
+                                color: Constants.gray600,
+                              ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
