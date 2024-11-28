@@ -16,4 +16,51 @@ dev_dependencies:
   flutter_lints: ^4.0.0
 
 flutter:
+  fonts:
+    - family: Archivo
+      fonts:
+        - asset: assets/fonts/Archivo-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Archivo-BlackItalic.ttf
+          weight: 900
+          style: italic
+        - asset: assets/fonts/Archivo-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Archivo-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/Archivo-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Archivo-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/Archivo-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Archivo-ExtraLightItalic.ttf
+          weight: 200
+          style: italic
+        - asset: assets/fonts/Archivo-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Archivo-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Archivo-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/Archivo-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Archivo-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Archivo-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Archivo-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Archivo-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Archivo-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Archivo-ThinItalic.ttf
+          weight: 100
+          style: italic
   uses-material-design: true
