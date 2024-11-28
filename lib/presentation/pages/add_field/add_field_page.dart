@@ -12,7 +12,7 @@ import 'field_type_selector.dart';
 const icons = [
   Constants.iconDropdown,
   Constants.iconRename,
-  Constants.checkbox,
+  Constants.iconCheckbox,
   Constants.iconOwnerUser,
   Constants.iconHome,
   Constants.iconPin,
