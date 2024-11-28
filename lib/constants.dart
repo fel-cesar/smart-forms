@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 abstract class Constants {
   // Text
   static const addField = 'Add Field';
+  static const addItem = 'Add Item';
   static const cancel = 'Cancel';
   static const checkbox = 'Checkbox';
+  static const checkboxItems = 'Checkbox Items';
   static const create = 'Create';
   static const createNewForm = 'Create New Form';
   static const done = 'Done';
   static const dropdown = 'Dropdown';
+  static const dropdownItems = 'Dropdown Items';
   static const fieldName = 'Field Name';
   static const fieldType = 'Field Type';
   static const formTitle = 'Form Title';

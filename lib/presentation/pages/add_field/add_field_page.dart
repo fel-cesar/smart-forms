@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
+import 'package:smart_forms/presentation/pages/form_page/form_page.dart';
 
 import '../form_page/form_page_controller.dart';
 import 'add_field_page_controller.dart';
@@ -131,7 +132,7 @@ class AddFieldPage extends StatelessWidget {
                     const SizedBox(height: 4),
                     // TODO: extract this text field to components.
                     TextField(
-                      style: const TextStyle(fontSize: 12.25),
+                      style: textStyles[TextSize.sm],
                       cursorColor: Constants.gray500,
                       decoration: InputDecoration(
                         hintText: Constants.formTitle,
@@ -200,7 +201,11 @@ class AddFieldPage extends StatelessWidget {
                     Obx(() {
                       return addFieldPageController.type.value == 'dropdown'
                           ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                const SizedBox(height: 20),
+                                TextXS.bold(Constants.dropdownItems.toUpperCase()),
+                                const SizedBox(height: 5),
                                 ReorderableListView.builder(
                                   // onReorderStart: (_) {
                                   //   FocusScope.of(context).unfocus();
@@ -213,30 +218,44 @@ class AddFieldPage extends StatelessWidget {
                                   itemCount: addFieldPageController.options.length,
                                   buildDefaultDragHandles: true,
                                   itemBuilder: (context, index) {
-                                    return ListTile(
+                                    return Padding(
                                       key: Key(addFieldPageController.optionsKeys[index]),
-                                      title: TextField(onChanged: (value) {
-                                        addFieldPageController.options[index] = value;
-                                      }),
-                                      leading: ReorderableDragStartListener(
-                                        index: index,
-                                        child: GestureDetector(
-                                          child: const Icon(Icons.drag_handle),
-                                          onTapDown: (details) {
-                                            FocusScope.of(context).unfocus();
+                                      padding: const EdgeInsets.only(bottom: 14),
+                                      child: DraggableInput(
+                                        leading: ReorderableDragStartListener(
+                                          index: index,
+                                          child: GestureDetector(
+                                            child: const Icon(
+                                              Icons.drag_indicator_sharp,
+                                              color: Constants.gray600,
+                                            ),
+                                            onTapDown: (details) {
+                                              FocusScope.of(context).unfocus();
+                                            },
+                                          ),
+                                        ),
+                                        child: TextField(
+                                          cursorColor: Constants.gray500,
+                                          style: textStyles[TextSize.sm],
+                                          onChanged: (value) {
+                                            addFieldPageController.options[index] = value;
                                           },
+                                          decoration: const InputDecoration(
+                                            contentPadding: EdgeInsets.zero,
+                                            border: OutlineInputBorder(borderSide: BorderSide.none),
+                                          ),
                                         ),
                                       ),
                                     );
                                   },
                                 ),
-                                Button.small(
-                                    key: const Key('button-add-field}'),
-                                    text: 'add field',
-                                    onPressed: () {
-                                      addFieldPageController.options.add('');
-                                      addFieldPageController.optionsKeys.add(DateTime.now().toString());
-                                    }),
+                                DashedAddItemButton(
+                                  key: const Key('button-add-field}'),
+                                  onTap: () {
+                                    addFieldPageController.options.add('');
+                                    addFieldPageController.optionsKeys.add(DateTime.now().toString());
+                                  },
+                                ),
                               ],
                             )
                           : const SizedBox.shrink();
@@ -245,7 +264,11 @@ class AddFieldPage extends StatelessWidget {
                     Obx(() {
                       return addFieldPageController.type.value == 'checkbox'
                           ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                const SizedBox(height: 20),
+                                TextXS.bold(Constants.checkboxItems.toUpperCase()),
+                                const SizedBox(height: 5),
                                 ReorderableListView.builder(
                                   // onReorderStart: (_) {
                                   //   FocusScope.of(context).unfocus();
@@ -258,30 +281,44 @@ class AddFieldPage extends StatelessWidget {
                                   itemCount: addFieldPageController.options.length,
                                   buildDefaultDragHandles: true,
                                   itemBuilder: (context, index) {
-                                    return ListTile(
+                                    return Padding(
                                       key: Key(addFieldPageController.optionsKeys[index]),
-                                      title: TextField(onChanged: (value) {
-                                        addFieldPageController.options[index] = value;
-                                      }),
-                                      leading: ReorderableDragStartListener(
-                                        index: index,
-                                        child: GestureDetector(
-                                          child: const Icon(Icons.drag_handle),
-                                          onTapDown: (details) {
-                                            FocusScope.of(context).unfocus();
+                                      padding: const EdgeInsets.only(bottom: 14),
+                                      child: DraggableInput(
+                                        leading: ReorderableDragStartListener(
+                                          index: index,
+                                          child: GestureDetector(
+                                            child: const Icon(
+                                              Icons.drag_indicator_sharp,
+                                              color: Constants.gray600,
+                                            ),
+                                            onTapDown: (details) {
+                                              FocusScope.of(context).unfocus();
+                                            },
+                                          ),
+                                        ),
+                                        child: TextField(
+                                          cursorColor: Constants.gray500,
+                                          style: textStyles[TextSize.sm],
+                                          onChanged: (value) {
+                                            addFieldPageController.options[index] = value;
                                           },
+                                          decoration: const InputDecoration(
+                                            contentPadding: EdgeInsets.zero,
+                                            border: OutlineInputBorder(borderSide: BorderSide.none),
+                                          ),
                                         ),
                                       ),
                                     );
                                   },
                                 ),
-                                Button.small(
-                                    key: const Key('button-add-field}'),
-                                    text: 'add field',
-                                    onPressed: () {
-                                      addFieldPageController.options.add('');
-                                      addFieldPageController.optionsKeys.add(DateTime.now().toString());
-                                    }),
+                                DashedAddItemButton(
+                                  key: const Key('button-add-field}'),
+                                  onTap: () {
+                                    addFieldPageController.options.add('');
+                                    addFieldPageController.optionsKeys.add(DateTime.now().toString());
+                                  },
+                                ),
                               ],
                             )
                           : const SizedBox.shrink();

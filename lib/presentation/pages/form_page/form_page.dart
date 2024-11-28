@@ -165,8 +165,7 @@ class DraggableInput extends StatelessWidget {
             leading,
             const SizedBox(width: 20),
           ],
-          child,
-          const Spacer(),
+          Expanded(child: child),
           if (trailing case final trailing?) ...[
             const SizedBox(width: 20),
             trailing,
