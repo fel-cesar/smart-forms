@@ -8,6 +8,34 @@ class FormPage extends StatelessWidget {
   @override
   Widget build(context) {
     return Scaffold(
+      floatingActionButton: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton.filled(
+            style: IconButton.styleFrom(
+              backgroundColor: Constants.gray800,
+              padding: const EdgeInsets.all(18),
+            ),
+            onPressed: () {},
+            icon: const Icon(
+              Icons.add,
+              size: 18,
+            ),
+          ),
+          const SizedBox(width: 21),
+          IconButton.filled(
+            style: IconButton.styleFrom(
+              backgroundColor: Constants.gray800,
+              padding: const EdgeInsets.all(18),
+            ),
+            onPressed: () {},
+            icon: const Icon(
+              Icons.visibility,
+              size: 18,
+            ),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
