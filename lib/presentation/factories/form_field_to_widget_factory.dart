@@ -17,7 +17,7 @@ class FormFieldToWidgetFactory {
       return MarkDropdown(label: field.label, options: field.options);
     }
     if (field is MarkCheckboxGroupFormFieldModel) {
-      return const MarkCheckboxGroup();
+      return MarkCheckboxGroup(options: field.options);
     }
 
     // Add more mappings for other field types here

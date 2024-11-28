@@ -9,10 +9,7 @@ class AddFieldPageController extends GetxController {
   final name = ''.obs;
   final iconName = ''.obs;
 
-
-  // final options = <String>[].obs;
-
-  // TODO: These will be dynamic, these values are just placeholders
+  // TODO: For dropdown + checkbox options (TODO: apply SOLID)
   final options = <String>[].obs;
 
 
@@ -24,24 +21,20 @@ class AddFieldPageController extends GetxController {
           label: name.value,
           type: type.value,
         );
-
       case 'dropdown':
         return MarkDropdownFormField(
-          id: DateTime.now().toString(),
-          label: name.value,
-          type: type.value,
-          options: options,
-          selectedValue: options[0],
-        );
+            id: DateTime.now().toString(),
+            label: name.value,
+            type: type.value,
+            options: options,
+            selectedValue: options[0]);
       case 'checkbox':
         return MarkCheckboxGroupFormFieldModel(
           id: DateTime.now().toString(),
           label: name.value,
           type: type.value,
           options: options,
-          // selectedValue: options[0],
         );
-
       default:
         // Default to text, this code should not be reached
         return FormTextFieldModel(

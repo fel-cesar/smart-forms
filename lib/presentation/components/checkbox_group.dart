@@ -1,15 +1,46 @@
 import 'package:flutter/material.dart';
 
 class MarkCheckboxGroup extends StatefulWidget {
-  const MarkCheckboxGroup({super.key});
+  final List<String> options;
+
+  const MarkCheckboxGroup({super.key, required this.options});
 
   @override
-  State<MarkCheckboxGroup> createState() => _MarkCheckboxGroupState();
+  MarkCheckboxGroupState createState() => MarkCheckboxGroupState();
 }
 
-class _MarkCheckboxGroupState extends State<MarkCheckboxGroup> {
+class MarkCheckboxGroupState extends State<MarkCheckboxGroup> {
+  late List<bool> _isChecked; // Tracks the state of each checkbox
+
+  @override
+  void initState() {
+    super.initState();
+    _isChecked = List<bool>.filled(widget.options.length, false);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Text('CHECKBOX GROUP PLACEHOLDER');
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: widget.options.asMap().entries.map((entry) {
+        final index = entry.key;
+        final label = entry.value;
+
+        return Row(
+          children: [
+            Checkbox(
+              value: _isChecked[index],
+              onChanged: (value) {
+                setState(() {
+                  _isChecked[index] = value ?? false;
+                });
+              },
+            ),
+            Text(label),
+          ],
+        );
+      }).toList(),
+    );
   }
 }
