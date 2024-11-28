@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smart_forms/constants.dart';
-import 'package:smart_forms/controllers/form_list_controller.dart';
 import 'package:smart_forms/models/form_model.dart';
-
+import 'package:smart_forms/presentation/pages/form_list_page/form_list_page_controller.dart';
 
 
 class FormListPage extends StatelessWidget {
   FormListPage({super.key});
 
-  final FormListController formsController = Get.find<FormListController>();
+  final FormListPageController formsController = Get.find<FormListPageController>();
 
   @override
   Widget build(BuildContext context) {

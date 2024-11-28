@@ -4,8 +4,7 @@ import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
 import 'package:smart_forms/presentation/pages/add_field/add_field_page.dart';
 import 'package:smart_forms/controllers/form_page_controller.dart';
-import 'package:smart_forms/controllers/form_list_controller.dart';
-
+import 'package:smart_forms/presentation/pages/form_list_page/form_list_page_controller.dart';
 
 class FormPage extends StatelessWidget {
   FormPage({super.key});
@@ -49,7 +48,7 @@ class FormPage extends StatelessWidget {
               padding: const EdgeInsets.all(18),
             ),
             onPressed: () {
-              final formListController = Get.find<FormListController>();
+              final formListController = Get.find<FormListPageController>();
               formListController.addForm(formController.form);
               Get.back();
             },

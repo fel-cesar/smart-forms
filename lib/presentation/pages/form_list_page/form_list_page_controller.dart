@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import '../../../models/form_model.dart';
+import '../../../../../models/form_model.dart';
 
-class FormListController extends GetxController {
+class FormListPageController extends GetxController {
   // FormListModel would be simply a list of forms, lets simplify for now.
   var forms = <FormModel>[].obs;
 
