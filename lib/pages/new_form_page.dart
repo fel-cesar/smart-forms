@@ -67,7 +67,7 @@ class NewFormPage extends StatelessWidget {
                 if (Get.isBottomSheetOpen == true) {
                   Get.back();
                 }
-                Get.to(const FormPage());
+                Get.to(() => const FormPage());
               },
               text: Constants.create,
             ),

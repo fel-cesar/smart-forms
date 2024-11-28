@@ -7,7 +7,9 @@ class Button extends StatelessWidget {
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(7))),
           padding: const EdgeInsets.fromLTRB(7, 5, 7, 6),
           backgroundColor: Constants.blueHighlight,
+          disabledBackgroundColor: Constants.blueHighlight.withOpacity(0.3),
           foregroundColor: Colors.white,
+          disabledForegroundColor: Colors.white,
         ),
         textStyle = const TextStyle(
           fontSize: 12.5,
@@ -19,7 +21,9 @@ class Button extends StatelessWidget {
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(35))),
           padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
           backgroundColor: Constants.blueHighlight,
+          disabledBackgroundColor: Constants.blueHighlight.withOpacity(0.3),
           foregroundColor: Colors.white,
+          disabledForegroundColor: Colors.white,
         ),
         textStyle = const TextStyle(
           fontSize: 14,

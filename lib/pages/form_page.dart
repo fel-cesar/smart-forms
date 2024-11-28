@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:smart_forms/components/components.dart';
 import 'package:smart_forms/constants.dart';
+import 'package:smart_forms/pages/add_field_page.dart';
 
 class FormPage extends StatelessWidget {
   const FormPage({super.key});
@@ -16,7 +18,7 @@ class FormPage extends StatelessWidget {
               backgroundColor: Constants.gray800,
               padding: const EdgeInsets.all(18),
             ),
-            onPressed: () {},
+            onPressed: () => Get.bottomSheet(const AddFieldPage()),
             icon: const Icon(
               Icons.add,
               size: 18,
@@ -59,12 +61,14 @@ class FormPage extends StatelessWidget {
                     top: Radius.circular(28),
                   ),
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.all(14),
+                child: Padding(
+                  padding: const EdgeInsets.all(14),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      DashedInputListItem(),
+                      DashedInputListItem(
+                        onTap: () => Get.bottomSheet(const AddFieldPage()),
+                      ),
                     ],
                   ),
                 ),
