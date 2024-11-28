@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:smart_forms/components/components.dart';
+import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
 
 class FieldTypeSelector<T> extends StatelessWidget {

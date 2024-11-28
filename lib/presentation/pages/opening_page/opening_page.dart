@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:smart_forms/components/components.dart';
+import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
-import 'package:smart_forms/pages/new_form_page.dart';
-
-import '../controllers/forms_list_controller.dart';
-import '../models/form_model.dart';
-import 'form_list_page.dart';
+import 'package:smart_forms/controllers/forms_list_controller.dart';
+import 'package:smart_forms/models/form_model.dart';
+import 'package:smart_forms/presentation/pages/form_page/form_list_page.dart';
+import 'package:smart_forms/presentation/pages/new_form_page/new_form_page.dart';
 
 class OpeningPage extends StatelessWidget {
   OpeningPage({super.key});
@@ -43,12 +42,11 @@ class OpeningPage extends StatelessWidget {
                         ),
                       ),
                       Button.small(
-                          text: 'test add form',
-                          onPressed: () => formsController.addForm(
-                                FormModel(
-                                    id: DateTime.now().toString(),
-                                    title: "New Form ${DateTime.now()}"),
-                              ))
+                        text: 'test add form',
+                        onPressed: () => formsController.addForm(
+                          FormModel(id: DateTime.now().toString(), title: "New Form ${DateTime.now()}"),
+                        ),
+                      )
                     ],
                   ),
                 ),

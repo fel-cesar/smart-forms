@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../constants.dart';
-import '../controllers/forms_list_controller.dart';
-import '../models/form_model.dart';
+import '../../../constants.dart';
+import '../../../controllers/forms_list_controller.dart';
+import '../../../models/form_model.dart';
 
 class FormListPage extends StatelessWidget {
   FormListPage({super.key});
@@ -18,8 +18,7 @@ class FormListPage extends StatelessWidget {
         children: [
           Expanded(
             child: Obx(() {
-              return
-              ReorderableListView.builder(
+              return ReorderableListView.builder(
                 onReorder: (oldIndex, newIndex) {
                   formsController.reorder(oldIndex, newIndex);
                 },
@@ -28,7 +27,6 @@ class FormListPage extends StatelessWidget {
                   final form = formsController.forms[index];
 
                   return ListTile(
-
                     key: ValueKey(form.id),
                     title: Text(form.title),
                     subtitle: Text("Fields: ${form.fields.length}"),

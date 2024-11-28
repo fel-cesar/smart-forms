@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
-import 'package:smart_forms/pages/field_type_selector.dart';
 
-import '../components/components.dart';
+import 'field_type_selector.dart';
 
 class AddFieldPage extends StatelessWidget {
   const AddFieldPage({super.key});
@@ -27,6 +27,7 @@ class AddFieldPage extends StatelessWidget {
         color: Colors.white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
               padding: const EdgeInsets.all(14),

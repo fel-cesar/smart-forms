@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:smart_forms/components/components.dart';
+import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
-import 'package:smart_forms/pages/add_field_page.dart';
+import 'package:smart_forms/presentation/pages/add_field/add_field_page.dart';
 
 class FormPage extends StatelessWidget {
   const FormPage({super.key});
