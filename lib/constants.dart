@@ -15,10 +15,12 @@ abstract class Constants {
   static const icon = 'Icon';
   static const newForm = 'New Form';
   static const paragraph = 'Paragraph';
+  static const select = 'Select';
   static const single = 'Single';
   static const smartForms = 'Smart Forms';
   static const text = 'Text';
   static const textOptions = 'Text Options';
+  static const typeHere = 'Type Here';
   static const formsList = 'Forms List';
 
   // Colors

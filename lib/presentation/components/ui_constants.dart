@@ -6,6 +6,6 @@ const formBorderStyle = OutlineInputBorder(
     color: Constants.gray400,
   ),
   borderRadius: BorderRadius.all(
-    Radius.circular(17.5),
+    Radius.circular(10.5),
   ),
 );

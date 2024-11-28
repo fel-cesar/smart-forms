@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:smart_forms/constants.dart';
+import 'package:smart_forms/presentation/components/text.dart';
+
+import 'ui_constants.dart';
 
 //TODO: options parameter?
 //TODO: initial value parameter?
@@ -25,12 +30,26 @@ class _MarkDropdownState extends State<MarkDropdown> {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
-      decoration: InputDecoration(labelText: widget.label),
+      icon: SizedBox(
+        width: 8,
+        child: Center(
+          child: SvgPicture.asset(Constants.iconChevronDown),
+        ),
+      ),
+      hint: const TextSM(
+        Constants.select,
+        style: TextStyle(color: Constants.gray500),
+      ),
+      decoration: const InputDecoration(
+        border: formBorderStyle,
+        enabledBorder: formBorderStyle,
+        focusedBorder: formBorderStyle,
+      ),
       value: selectedValue,
       items: widget.options
           .map((option) => DropdownMenuItem(
                 value: option,
-                child: Text(option),
+                child: TextBase(option),
               ))
           .toList(),
       onChanged: (value) {

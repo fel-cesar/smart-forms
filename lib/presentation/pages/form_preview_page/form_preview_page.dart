@@ -12,67 +12,73 @@ class FormPreviewPage extends StatelessWidget {
 
   @override
   Widget build(context) {
-    return Scaffold(
-      floatingActionButton: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          IconButton.filled(
-            style: IconButton.styleFrom(
-              backgroundColor: Constants.gray400,
-              padding: const EdgeInsets.all(18),
-            ),
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              color: Constants.gray800,
-              Icons.visibility,
-              size: 18,
-            ),
-          ),
-          const SizedBox(width: 21),
-        ],
-      ),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        floatingActionButton: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
-              child: Text(
-                formController.form.title,
-                style: const TextStyle(
-                  fontSize: 26.25,
-                  fontWeight: FontWeight.bold,
-                  color: Constants.gray800,
-                ),
+            IconButton.filled(
+              style: IconButton.styleFrom(
+                backgroundColor: Constants.gray400,
+                padding: const EdgeInsets.all(18),
+              ),
+              onPressed: () {
+                Get.back();
+              },
+              icon: const Icon(
+                color: Constants.gray800,
+                Icons.visibility,
+                size: 18,
               ),
             ),
-            Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(28),
+            const SizedBox(width: 21),
+          ],
+        ),
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
+                child: Text(
+                  formController.form.title,
+                  style: const TextStyle(
+                    fontSize: 26.25,
+                    fontWeight: FontWeight.bold,
+                    color: Constants.gray800,
                   ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(14),
-                  child: Obx(() {
-                    return ListView.builder(
-                      itemCount: formController.fields.length,
-                      itemBuilder: (context, index) {
-                        final formField = formController.fields[index];
-                        // Proper list tile here
-                        return FormFieldToWidgetFactory.buildFormField(
-                            formField);
-                      },
-                    );
-                  }),
+              ),
+              Expanded(
+                child: Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(28),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(14),
+                    child: Obx(() {
+                      return ListView.builder(
+                        itemCount: formController.fields.length,
+                        itemBuilder: (context, index) {
+                          final formField = formController.fields[index];
+                          return Column(
+                            children: [
+                              FormFieldToWidgetFactory.buildFormField(formField),
+                              if (index != formController.fields.length - 1) const SizedBox(height: 20),
+                            ],
+                          );
+                        },
+                      );
+                    }),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

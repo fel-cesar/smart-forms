@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smart_forms/constants.dart';
+import 'package:smart_forms/presentation/components/components.dart';
 
 class MarkCheckboxGroup extends StatefulWidget {
   final List<String> options;
@@ -30,6 +32,14 @@ class MarkCheckboxGroupState extends State<MarkCheckboxGroup> {
         return Row(
           children: [
             Checkbox(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.25),
+              ),
+              side: const BorderSide(
+                color: Constants.gray400,
+                width: 2,
+              ),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               value: _isChecked[index],
               onChanged: (value) {
                 setState(() {
@@ -37,7 +47,7 @@ class MarkCheckboxGroupState extends State<MarkCheckboxGroup> {
                 });
               },
             ),
-            Text(label),
+            TextBase(label),
           ],
         );
       }).toList(),

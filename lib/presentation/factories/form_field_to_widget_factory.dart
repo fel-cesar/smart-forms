@@ -11,13 +11,36 @@ import '../../models/form_fields/form_text_field_model.dart';
 class FormFieldToWidgetFactory {
   static Widget buildFormField(MarkFormField field) {
     if (field is FormTextFieldModel) {
-      return  MarkTextField(multiline: field.multiline);
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TextXS.bold(field.label.toUpperCase()),
+          const SizedBox(height: 4),
+          MarkTextField(multiline: field.multiline),
+        ],
+      );
     }
     if (field is MarkDropdownFormField) {
-      return MarkDropdown(label: field.label, options: field.options);
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TextXS.bold(field.label.toUpperCase()),
+          const SizedBox(height: 4),
+          MarkDropdown(label: field.label, options: field.options),
+        ],
+      );
     }
     if (field is MarkCheckboxGroupFormFieldModel) {
-      return MarkCheckboxGroup(options: field.options);
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TextXS.bold(field.label.toUpperCase()),
+          MarkCheckboxGroup(options: field.options),
+        ],
+      );
     }
 
     // Add more mappings for other field types here
