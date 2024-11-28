@@ -3,15 +3,11 @@ import 'package:smart_forms/models/form_model.dart';
 
 import '../../../models/form_field.dart';
 
-// TODO: Should we connect the controllers to models or pages? (pages IMO)
-// TODO: Reorderable mixin?
 class FormPageController extends GetxController {
   final fields = <MarkFormField>[].obs;
 
   final String title;
-  late FormModel
-      form; // TODO: maybe not necessary according o SOLID, remove later
-
+  late FormModel form;
   FormPageController({required this.title}) {
     form = FormModel(
         id: DateTime.now().toString(),

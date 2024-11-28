@@ -4,10 +4,11 @@ import 'package:get/get.dart';
 import 'package:smart_forms/models/form_field.dart';
 import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
-import 'package:smart_forms/presentation/pages/add_field/add_field_page.dart';
-import 'package:smart_forms/presentation/pages/form_list_page/form_list_page_controller.dart';
-import 'package:smart_forms/presentation/pages/form_page/form_page_controller.dart';
-import 'package:smart_forms/presentation/pages/form_preview_page/form_preview_page.dart';
+
+import '../form_list_page/form_list_page_controller.dart';
+import '../form_preview_page/form_preview_page.dart';
+import 'form_page_controller.dart';
+import '../add_field/add_field_page.dart';
 
 class FormPage extends StatelessWidget {
   FormPage({super.key});
@@ -117,8 +118,6 @@ class FormPage extends StatelessWidget {
                             ),
                             isScrollControlled: true,
                           );
-
-                          print(newFormField.toString());
                           if (newFormField != null) {
                             formController.fields.add(newFormField);
                           }
@@ -149,15 +148,9 @@ class FormPage extends StatelessWidget {
                                   arguments: formController.fields[index]),
                             );
 
-                            print(newFormField.toString());
-                            print(newFormField?.iconPath);
-
                             if (newFormField != null) {
                               formController.fields.removeAt(index);
                               formController.fields.insert(index, newFormField);
-                              // formController.fields[index] = formField;
-                              // formController.
-                              // formController.update();
                             }
                           },
                           child: Padding(
@@ -179,7 +172,6 @@ class FormPage extends StatelessWidget {
                                     width: 28,
                                     height: 28,
                                     child: GestureDetector(
-                                      // onTap: onPressed,
                                       child: Center(
                                         child: SvgPicture.asset(
                                           formField.iconPath,

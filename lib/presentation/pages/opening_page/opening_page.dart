@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:smart_forms/models/form_model.dart';
 import 'package:smart_forms/presentation/components/components.dart';
 import 'package:smart_forms/constants.dart';
-import 'package:smart_forms/presentation/pages/form_list_page/form_list_page.dart';
-import 'package:smart_forms/presentation/pages/form_list_page/form_list_page_controller.dart';
-import 'package:smart_forms/presentation/pages/new_form_page/new_form_page.dart';
+
+import '../form_list_page/form_list_page_controller.dart';
+import '../new_form_page/new_form_page.dart';
+
 class OpeningPage extends StatelessWidget {
   OpeningPage({super.key});
 
