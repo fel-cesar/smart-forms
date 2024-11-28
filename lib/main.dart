@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:smart_forms/constants.dart';
 
 void main() {
@@ -25,15 +26,15 @@ class MainApp extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Expanded(
+            Expanded(
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text('<LOGO GOES HERE>'),
-                    SizedBox(height: 20),
-                    Text(
+                    SvgPicture.asset(Constants.projectMarkLogoSvg),
+                    const SizedBox(height: 20),
+                    const Text(
                       Constants.smartForms,
                       style: TextStyle(
                         color: Constants.grey800,
