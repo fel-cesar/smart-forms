@@ -66,7 +66,7 @@ class NewFormPage extends StatelessWidget {
                 }
 
                 // then navigate
-                Get.to(() => FormPage(), arguments: title);
+                Get.to(() =>  FormPage(), arguments: title);
               },
               text: Constants.create,
             ),

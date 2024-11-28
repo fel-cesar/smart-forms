@@ -9,12 +9,12 @@ import 'package:smart_forms/presentation/pages/form_page/form_page_controller.da
 import 'package:smart_forms/presentation/pages/form_preview_page/form_preview_page.dart';
 
 class FormPage extends StatelessWidget {
-  const FormPage({super.key});
+   FormPage({super.key});
 
-  @override
-  Widget build(context) {
     final formController =
         Get.put(FormPageController(title: (Get.arguments as RxString).value));
+  @override
+  Widget build(context) {
 
     return Scaffold(
       floatingActionButton: Row(

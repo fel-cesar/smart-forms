@@ -17,8 +17,9 @@ class AddFieldPageController extends GetxController {
 
   final arguments = Get.arguments;
 
-
   final textFieldController = TextEditingController();
+
+  final optionsTextFieldController = <TextEditingController>[].obs;
 
   @override
   void onReady() {
@@ -26,7 +27,6 @@ class AddFieldPageController extends GetxController {
 
     final currentFormField = arguments as MarkFormField?;
     if (currentFormField != null) {
-
       type.value = currentFormField.type;
       name.value = currentFormField.label;
 
@@ -38,6 +38,11 @@ class AddFieldPageController extends GetxController {
             .options
             .map((e) => DateTime.now().toString())
             .toList();
+
+        optionsTextFieldController.value = (currentFormField)
+            .options
+            .map((e) => TextEditingController(text: e))
+            .toList();
       }
 
       if (currentFormField is MarkCheckboxGroupFormFieldModel) {
@@ -46,9 +51,14 @@ class AddFieldPageController extends GetxController {
             .options
             .map((e) => DateTime.now().toString())
             .toList();
+        optionsTextFieldController.value = (currentFormField)
+            .options
+            .map((e) => TextEditingController(text: e))
+            .toList();
       }
       if (currentFormField is FormTextFieldModel) {
-        textFieldType.value = currentFormField.multiline ? 'multiline' : 'single';
+        textFieldType.value =
+            currentFormField.multiline ? 'multiline' : 'single';
       }
       refresh();
     }
@@ -65,11 +75,12 @@ class AddFieldPageController extends GetxController {
         );
       case 'dropdown':
         return MarkDropdownFormFieldModel(
-            id: DateTime.now().toString(),
-            label: name.value,
-            type: type.value,
-            options: options,
-            selectedValue: options[0]);
+          id: DateTime.now().toString(),
+          label: name.value,
+          type: type.value,
+          options: options,
+          // selectedValue: options[0]
+        );
       case 'checkbox':
         return MarkCheckboxGroupFormFieldModel(
           id: DateTime.now().toString(),
@@ -93,7 +104,10 @@ class AddFieldPageController extends GetxController {
     options.insert(destinationIndex, option);
 
     final String optionKey = optionsKeys.removeAt(originIndex);
-
     optionsKeys.insert(destinationIndex, optionKey);
+
+    final TextEditingController textFieldController =
+        optionsTextFieldController.removeAt(originIndex);
+    optionsTextFieldController.insert(destinationIndex, textFieldController);
   }
 }

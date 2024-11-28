@@ -247,6 +247,7 @@ class AddFieldPage extends StatelessWidget {
                                           ),
                                         ),
                                         child: TextField(
+                                          controller: addFieldPageController.optionsTextFieldController.isNotEmpty ? addFieldPageController.optionsTextFieldController[index] : null,
                                           cursorColor: Constants.gray500,
                                           style: textStyles[TextSize.sm],
                                           onChanged: (value) {
@@ -309,6 +310,7 @@ class AddFieldPage extends StatelessWidget {
                                           ),
                                         ),
                                         child: TextField(
+                                           controller: addFieldPageController.optionsTextFieldController.isNotEmpty ? addFieldPageController.optionsTextFieldController[index] : null,
                                           cursorColor: Constants.gray500,
                                           style: textStyles[TextSize.sm],
                                           onChanged: (value) {
