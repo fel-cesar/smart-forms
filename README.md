@@ -11,7 +11,6 @@ Smart Forms is a customizable form builder application that allows users to crea
 - [Getting Started](#getting-started)
 - [Dependencies](#dependencies)
 - [Contributing](#contributing)
-- [License](#license)
 
 
 
