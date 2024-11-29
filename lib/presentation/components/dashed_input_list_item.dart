@@ -11,7 +11,6 @@ class DashedInputListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Background should extend below the dashed border
     return DottedBorder(
       color: Constants.gray400,
       strokeWidth: 2,
@@ -58,7 +57,6 @@ class DashedAddItemButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Background should extend below the dashed border
     return DottedBorder(
       color: Constants.gray400,
       strokeWidth: 2,

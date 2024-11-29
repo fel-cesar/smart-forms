@@ -16,7 +16,7 @@ class MarkTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (title.isNotEmpty) Text(title), // TODO: Proper font and size here
+        if (title.isNotEmpty) Text(title), 
         TextField(
           maxLines: multiline ? null : 1,
           style: textStyles[TextSize.sm],

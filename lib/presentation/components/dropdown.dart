@@ -9,7 +9,7 @@ class MarkDropdown extends StatefulWidget {
   final String label;
   final List<String> options;
 
-  MarkDropdown({
+  const MarkDropdown({
     super.key,
     required this.label,
     required this.options,
