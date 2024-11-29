@@ -196,6 +196,9 @@ class AddFieldPage extends StatelessWidget {
                         },
                       ),
                     ),
+
+
+                    // TODO: This section should be extracted to a factory or other delegation to apply separation of concerns
                     Obx(() {
                       return addFieldPageController.type.value == 'text'
                           ? Column(
@@ -226,6 +229,7 @@ class AddFieldPage extends StatelessWidget {
                             )
                           : const SizedBox.shrink();
                     }),
+                    // ---------------------------
                   ],
                 ),
               ),
