@@ -75,7 +75,8 @@ abstract class Constants {
   static const iconTextDescription = 'assets/icons/text_description.svg';
   static const iconViewOffHide = 'assets/icons/view_off_hide.svg';
   static const iconWarning = 'assets/icons/warning.svg';
-  static const iconWebsiteInternetGlobe = 'assets/icons/website_internet_globe.svg';
+  static const iconWebsiteInternetGlobe =
+      'assets/icons/website_internet_globe.svg';
 
   // Images
   static const projectMarkLogoSvg = 'assets/images/project_mark_logo.svg';

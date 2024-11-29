@@ -7,7 +7,7 @@ import 'package:smart_forms/presentation/pages/form_page/form_page.dart';
 class NewFormPage extends StatelessWidget {
   NewFormPage({super.key});
 
-  // We dont need controller for a single field
+  // For simplicity lets not use a controller for a single field
   final title = RxString('');
 
   @override
@@ -48,7 +48,8 @@ class NewFormPage extends StatelessWidget {
               cursorColor: Constants.gray500,
               decoration: InputDecoration(
                 hintText: Constants.formTitle,
-                hintStyle: textStyles[TextSize.sm]!.copyWith(color: Constants.gray500),
+                hintStyle:
+                    textStyles[TextSize.sm]!.copyWith(color: Constants.gray500),
                 border: formBorderStyle,
                 enabledBorder: formBorderStyle,
                 focusedBorder: formBorderStyle,
@@ -66,7 +67,7 @@ class NewFormPage extends StatelessWidget {
                 }
 
                 // then navigate
-                Get.to(() =>  FormPage(), arguments: title);
+                Get.to(() => FormPage(), arguments: title);
               },
               text: Constants.create,
             ),

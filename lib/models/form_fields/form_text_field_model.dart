@@ -21,14 +21,16 @@ class FormTextFieldModel extends MarkFormField {
     super.initControllerParameters(controller);
     controller.textFieldType.value = multiline ? 'multiline' : 'single';
   }
-  
+
   factory FormTextFieldModel.fromMap(Map<String, dynamic> data) {
     return FormTextFieldModel(
       id: data['id'],
       label: data['name'],
       type: data['type'],
       multiline: data['multiline'],
-      iconPath: (data['iconPath'] as String).isEmpty ? Constants.iconRename : data['iconPath'],
+      iconPath: (data['iconPath'] as String).isEmpty
+          ? Constants.iconRename
+          : data['iconPath'],
     );
   }
 }

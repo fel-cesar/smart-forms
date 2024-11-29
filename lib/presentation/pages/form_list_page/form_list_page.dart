@@ -4,11 +4,11 @@ import 'package:smart_forms/constants.dart';
 import 'package:smart_forms/models/form_model.dart';
 import 'package:smart_forms/presentation/pages/form_list_page/form_list_page_controller.dart';
 
-
 class FormListPage extends StatelessWidget {
   FormListPage({super.key});
 
-  final FormListPageController formsController = Get.find<FormListPageController>();
+  final FormListPageController formsController =
+      Get.find<FormListPageController>();
 
   @override
   Widget build(BuildContext context) {

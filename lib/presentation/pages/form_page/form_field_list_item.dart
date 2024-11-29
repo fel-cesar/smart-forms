@@ -27,7 +27,10 @@ class FormFieldListItem extends StatelessWidget {
       child: DraggableInput(
         leading: Row(
           children: [
-            ReorderableDragStartListener(index: index, child: const Icon(Icons.drag_indicator_sharp, color: Constants.gray600)),
+            ReorderableDragStartListener(
+                index: index,
+                child: const Icon(Icons.drag_indicator_sharp,
+                    color: Constants.gray600)),
             SizedBox(
               width: 28,
               height: 28,

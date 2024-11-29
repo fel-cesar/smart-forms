@@ -1,4 +1,3 @@
-// models/dropdown_form_field.dart
 import 'package:flutter/material.dart';
 import 'package:smart_forms/presentation/pages/add_field/add_field_page_controller.dart';
 
@@ -15,7 +14,6 @@ class MarkDropdownFormFieldModel extends MarkFormField {
     required super.label,
     required this.options,
     super.iconPath,
-    // required this.selectedValue,
     required super.type,
   });
 

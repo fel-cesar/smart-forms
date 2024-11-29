@@ -29,11 +29,9 @@ class _MarkDropdownState extends State<MarkDropdown> {
   void initState() {
     super.initState();
     modifiedOptions = _getUniqueOptionsWithSuffix(widget.options);
-    // Initialize selected value if needed (e.g., the first option or null)
     selectedValue = modifiedOptions.isNotEmpty ? modifiedOptions[0] : null;
   }
 
-  // Method to add counter suffix to duplicated options
   List<String> _getUniqueOptionsWithSuffix(List<String> options) {
     Map<String, int> optionCounts = {};
     List<String> modifiedList = [];
@@ -75,7 +73,7 @@ class _MarkDropdownState extends State<MarkDropdown> {
       value: selectedValue,
       items: modifiedOptions
           .map((option) => DropdownMenuItem<String>(
-                value: option, // Use modified options with suffix
+                value: option,
                 child: TextBase(option),
               ))
           .toList(),
