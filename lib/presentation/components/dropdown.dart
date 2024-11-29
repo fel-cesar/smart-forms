@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';  // Ensure this import is correct
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smart_forms/constants.dart';
 import 'package:smart_forms/presentation/components/text.dart';
 
@@ -75,7 +75,7 @@ class _MarkDropdownState extends State<MarkDropdown> {
       value: selectedValue,
       items: modifiedOptions
           .map((option) => DropdownMenuItem<String>(
-                value: option,  // Use modified options with suffix
+                value: option, // Use modified options with suffix
                 child: TextBase(option),
               ))
           .toList(),

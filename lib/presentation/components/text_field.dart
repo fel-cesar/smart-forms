@@ -9,14 +9,15 @@ class MarkTextField extends StatelessWidget {
   final String hintText;
   final bool multiline;
 
-  const MarkTextField({super.key, this.title = '', this.hintText = '', this.multiline = false});
+  const MarkTextField(
+      {super.key, this.title = '', this.hintText = '', this.multiline = false});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (title.isNotEmpty) Text(title), 
+        if (title.isNotEmpty) Text(title),
         TextField(
           maxLines: multiline ? null : 1,
           style: textStyles[TextSize.sm],
