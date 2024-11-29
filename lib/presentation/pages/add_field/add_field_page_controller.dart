@@ -11,7 +11,6 @@ class AddFieldPageController extends GetxController {
   final name = ''.obs;
   final iconPath = ''.obs;
 
-  // TODO: For dropdown + checkbox options (TODO: apply SOLID)
   final options = <String>[].obs;
   final optionsKeys = <String>[].obs;
   final textFieldType = 'single'.obs;
@@ -75,7 +74,8 @@ class AddFieldPageController extends GetxController {
           label: name.value,
           type: type.value,
           multiline: textFieldType.value == 'multiline',
-          iconPath: iconPath.value.isNotEmpty ? iconPath.value : Constants.iconRename,
+          iconPath:
+              iconPath.value.isNotEmpty ? iconPath.value : Constants.iconRename,
         );
       case 'dropdown':
         return MarkDropdownFormFieldModel(
@@ -83,7 +83,9 @@ class AddFieldPageController extends GetxController {
           label: name.value,
           type: type.value,
           options: options,
-          iconPath: iconPath.value.isNotEmpty ? iconPath.value : Constants.iconDropdown,
+          iconPath: iconPath.value.isNotEmpty
+              ? iconPath.value
+              : Constants.iconDropdown,
         );
       case 'checkbox':
         return MarkCheckboxGroupFormFieldModel(
@@ -91,7 +93,9 @@ class AddFieldPageController extends GetxController {
           label: name.value,
           type: type.value,
           options: options,
-          iconPath: iconPath.value.isNotEmpty ? iconPath.value : Constants.iconCheckbox,
+          iconPath: iconPath.value.isNotEmpty
+              ? iconPath.value
+              : Constants.iconCheckbox,
         );
       default:
         // Default to text, this code should not be reached

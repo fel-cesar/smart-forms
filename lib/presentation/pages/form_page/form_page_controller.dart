@@ -30,4 +30,10 @@ class FormPageController extends GetxController {
     final MarkFormField form = fields.removeAt(originIndex);
     fields.insert(destinationIndex, form);
   }
+
+  void updateField(int index, MarkFormField updatedField) {
+    if (index >= 0 && index < fields.length) {
+      fields[index] = updatedField;
+    }
+  }
 }
