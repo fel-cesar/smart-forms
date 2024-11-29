@@ -268,6 +268,7 @@ class AddFieldPage extends StatelessWidget {
                                   onTap: () {
                                     addFieldPageController.options.add('');
                                     addFieldPageController.optionsKeys.add(DateTime.now().toString());
+                                    addFieldPageController.optionsTextFieldController.add(TextEditingController());
                                   },
                                 ),
                               ],
@@ -331,6 +332,7 @@ class AddFieldPage extends StatelessWidget {
                                   onTap: () {
                                     addFieldPageController.options.add('');
                                     addFieldPageController.optionsKeys.add(DateTime.now().toString());
+                                    addFieldPageController.optionsTextFieldController.add(TextEditingController());
                                   },
                                 ),
                               ],

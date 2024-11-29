@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';  // Ensure this import is correct
 import 'package:smart_forms/constants.dart';
 import 'package:smart_forms/presentation/components/text.dart';
 
 import 'ui_constants.dart';
 
-//TODO: options parameter?
-//TODO: initial value parameter?
 class MarkDropdown extends StatefulWidget {
   final String label;
   final List<String> options;
 
-  const MarkDropdown({
+  MarkDropdown({
     super.key,
     required this.label,
     required this.options,
@@ -22,10 +20,39 @@ class MarkDropdown extends StatefulWidget {
 }
 
 class _MarkDropdownState extends State<MarkDropdown> {
-  // final RxString value;
-  final TextEditingController controller = TextEditingController(text: '');
-
+  final TextEditingController controller = TextEditingController();
   String? selectedValue;
+
+  late List<String> modifiedOptions;
+
+  @override
+  void initState() {
+    super.initState();
+    modifiedOptions = _getUniqueOptionsWithSuffix(widget.options);
+    // Initialize selected value if needed (e.g., the first option or null)
+    selectedValue = modifiedOptions.isNotEmpty ? modifiedOptions[0] : null;
+  }
+
+  // Method to add counter suffix to duplicated options
+  List<String> _getUniqueOptionsWithSuffix(List<String> options) {
+    Map<String, int> optionCounts = {};
+    List<String> modifiedList = [];
+
+    for (var option in options) {
+      if (optionCounts.containsKey(option)) {
+        // If the option is already seen, increment the counter
+        optionCounts[option] = optionCounts[option]! + 1;
+        // Append the counter suffix to the option value
+        modifiedList.add('$option (${optionCounts[option]})');
+      } else {
+        // If it's the first time seeing the option, just add it
+        optionCounts[option] = 1;
+        modifiedList.add(option);
+      }
+    }
+
+    return modifiedList;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,44 +73,17 @@ class _MarkDropdownState extends State<MarkDropdown> {
         focusedBorder: formBorderStyle,
       ),
       value: selectedValue,
-      items: widget.options
-          .map((option) => DropdownMenuItem(
-                value: option,
+      items: modifiedOptions
+          .map((option) => DropdownMenuItem<String>(
+                value: option,  // Use modified options with suffix
                 child: TextBase(option),
               ))
           .toList(),
-      onChanged: (value) {
+      onChanged: (String? value) {
         setState(() {
-          selectedValue = value ?? '';
+          selectedValue = value;
         });
       },
     );
-
-    // return Obx(
-    //   () => TextField(
-    //     controller: controller,
-    //     readOnly: true,
-    //     onTap: () async {
-    //       await Get.bottomSheet(FieldTypeSelector<String>(
-    //         onSelect: (value) => controller.text = value,
-    //       ));
-    //     },
-
-    //     style: const TextStyle(fontSize: 12.25),
-    //     cursorColor: Constants.gray500,
-    //     decoration: const InputDecoration(
-    //       suffixIcon: Icon(Icons.arrow_drop_down_rounded),
-    //       hintText: Constants.formTitle,
-    //       hintStyle: TextStyle(
-    //         color: Constants.gray500,
-    //         fontSize: 12.25,
-    //         fontWeight: FontWeight.w400,
-    //       ),
-    //       border: formBorderStyle,
-    //       enabledBorder: formBorderStyle,
-    //       focusedBorder: formBorderStyle,
-    //     ),
-    //   ),
-    // );
   }
 }
